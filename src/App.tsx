@@ -1,24 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import TitleBar from './components/TitleBar';
+// import TestComponent from './components/TestComponent';
+import Test from './components/TestPropsAshton';
+import 'bootstrap/dist/css/bootstrap.css';
+import {BrowserRouter as Router} from 'react-router-dom'; 
 
-function App() {
+
+const App: React.FunctionComponent = () => {
+
+  const [sessionToken, setSessionToken] = useState('');
+
+  function updateToken(newToken: string) {
+    localStorage.setItem("token", newToken);
+    setSessionToken(newToken);
+    console.log(sessionToken);
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+      <TitleBar updateToken={updateToken}/>
+      {/* <TestComponent /> */}
+      {/* <Test name='hello'/> */}
+      </Router>
     </div>
   );
 }
