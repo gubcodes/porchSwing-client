@@ -11,6 +11,7 @@ import Login from './modals/Login';
 
 type PropTypes = {
     updateToken: (token: string) => void;
+    updateShopOwner: (isShopOwner: string) => void;
     // logout: () => void;
     // isLoggedIn: boolean;
 }
@@ -67,7 +68,7 @@ export default class TitleBar extends React.Component<PropTypes, {}> {
                     <Route exact path="/storefront"><StoreFront title='storefront page'/></Route>
                     <Route exact path="/backoffice"><BackOffice title='backoffice page'/></Route>
                     <Route exact path="/register"><Register updateToken={this.props.updateToken}/></Route>
-                    <Route exact path="/login"><Login updateToken={this.props.updateToken}/></Route>
+                    <Route exact path="/login"><Login updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken}/></Route>
                     {/* <Route exact path="/backoffice">{!isAuth ? <Redirect to='/' /> : <ListDisplay />}</Route> */}
                 </Switch>
             </div>

@@ -1,25 +1,28 @@
-import React, {Component} from 'react';
-
-type State = {
-
-}
+import React, { Component } from 'react';
+import { Form, FormGroup, Modal, ModalBody, Label, Input, Button } from 'reactstrap';
+import { SliderPicker } from 'react-color';
 
 type PropsType = {
-    title: string
+    // title: string
 }
 
-class Landing extends Component<PropsType, State>{
-    constructor(props: PropsType){
+type State = {
+    
+}
+
+export default class ShopEdit extends Component<PropsType, State>{
+    constructor(props: PropsType) {
         super(props);
     }
 
     render() {
-        return(
-            <h1>{this.props.title}</h1> //this will say whatever you pass down as props
+        return (
+            <div>
+                <ModalBody>
+
+                    {/* <SliderPicker /> */}
+                </ModalBody>
+            </div>
         )
     }
-}
-
-export default Landing;
-
-// in app.js: <Landing title='Landing'>
+};

@@ -3,6 +3,7 @@ import { Form, FormGroup, Modal, ModalBody, ModalHeader, Label, Input, Button } 
 
 type PropsType = {
     updateToken: (token: string) => void;
+    updateShopOwner: (isShopOwner: boolean) => void;
 };
 
 type State = {
@@ -44,6 +45,7 @@ export default class Login extends React.Component<PropsType, State>{
         ).then((data) => {
             console.log(data)
             this.props.updateToken(data.sessionToken);
+            this.props.updateShopOwner(data.user.shopOwner); 
         })
     };
 

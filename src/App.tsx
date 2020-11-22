@@ -10,6 +10,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 const App: React.FunctionComponent = () => {
 
   const [sessionToken, setSessionToken] = useState('');
+  const [shopOwner, setShopOwner] = useState(false);
 
   function updateToken(newToken: string) {
     localStorage.setItem("token", newToken);
@@ -17,10 +18,17 @@ const App: React.FunctionComponent = () => {
     console.log(sessionToken);
   }
 
+  //put shopowner in the local storage
+  function updateShopOwner(isShopOwner: string) {
+    localStorage.setItem('shopOwner', isShopOwner);
+    setShopOwner(isShopOwner);
+    console.log(shopOwner);
+  }  
+
   return (
     <div className="App">
       <Router>
-      <TitleBar updateToken={updateToken}/>
+      <TitleBar updateShopOwner={updateShopOwner} updateToken={updateToken}/>
       {/* <TestComponent /> */}
       {/* <Test name='hello'/> */}
       </Router>

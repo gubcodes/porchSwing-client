@@ -12,7 +12,8 @@ type State = {
     confirmEmail: string,
     password: string,
     confirmPassword: string,
-    isOpen: boolean
+    isOpen: boolean,
+    shopOwner: boolean
 }
 
 export default class Register extends React.Component<PropsType, State> {
@@ -27,7 +28,8 @@ export default class Register extends React.Component<PropsType, State> {
             confirmEmail: '',
             password: '',
             confirmPassword: '',
-            isOpen: false
+            isOpen: false,
+            shopOwner: false
         };
     };
 
@@ -37,6 +39,7 @@ export default class Register extends React.Component<PropsType, State> {
         let lastName = this.state.lastName;
         let email = this.state.email;
         let password = this.state.password;
+        let shopOwner = this.state.shopOwner;
 
         //add try + if statements here to validate email + password 
 
@@ -47,7 +50,8 @@ export default class Register extends React.Component<PropsType, State> {
                     firstName: firstName,
                     lastName: lastName,
                     email: email,
-                    password: password
+                    password: password,
+                    shopOwner: shopOwner
                 }
             }),
             headers: new Headers({
