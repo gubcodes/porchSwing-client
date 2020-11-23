@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, FormGroup, Modal, ModalBody, Label, Input, Button } from 'reactstrap';
 import { storage } from '../../assets/firebase';
+import filler_item from '../../assets/images/filler_item.png';
 
 const ItemAddImage = (props) => {
     const [itemName, setItemName] = useState('');
@@ -54,14 +55,17 @@ const ItemAddImage = (props) => {
         }
     };
 
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * Math.floor(max));
-      }
+    // function getRandomInt(max) {
+    //     return Math.floor(Math.random() * Math.floor(max));
+    //   }
 
-    let randomNumber = getRandomInt(1000000000);
+    // let randomNumber = getRandomInt(1000000000);
+    
+        let d = new Date();
+        let n = d.getTime();
 
     const handleUpload = () => {
-        const uploadTask = storage.ref(`images/${randomNumber}${image.name}`).put(image);
+        const uploadTask = storage.ref(`images/${n}${image.name}`).put(image);
         uploadTask.on(
             'state_changed',
             shapshot => {
@@ -89,9 +93,9 @@ const ItemAddImage = (props) => {
 
     return (
         <div>
-            {/* <Modal isOpen={true}> */}
+            {/* <Modal isOpen={props.isOpenItemAdd}> */}
                 <FormGroup>
-                    <Button id='buttonHover' type='button' onClick={props.toggleItemAdd}>X</Button>
+                    <Button id='buttonHover' type='button' onClick={props.toggle}>X</Button>
                 </FormGroup>
                 <ModalBody>
                     <Form onSubmit={handleSubmit}>
@@ -129,11 +133,11 @@ const ItemAddImage = (props) => {
                                 <input type='file' onChange={handleChange} />
                                 <button type='button' onClick={handleUpload}>upload</button>
                                 <br />
-                                <img src={url || 'http://via.placeholder.com/100x100'} alt='firebase-image' />
+                                <img src={url || filler_item} alt='item-image' />
                             </div>
                         {/* button sends fetch and closes modal */}
                         <FormGroup>
-                            <Button id='buttonHover' type='submit' onClick={props.toggleItemAdd}>add piece</Button>
+                            <Button id='buttonHover' type='submit' onClick={props.toggle}>add piece</Button>
                         </FormGroup>
                     </Form>
                 </ModalBody>

@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { Modal } from 'reactstrap';
 import ItemAddImage from '../modals/ItemAddImage.js';
+import ShopAddImage from '../modals/ShopAddImage.js';
 import ShopEdit from '../modals/ShopEdit';
+import filler_logo from '../../assets/images/filler_logo.png';
 
 type PropsType = {
     title: string
+    updateShopOwner: (isShopOwner: string) => void;
 }
 
 type State = {
     isOpenItemAdd: boolean,
-    isOpenShopEdit: boolean
+    isOpenShopEdit: boolean,
+    isOpenShopAddImage: boolean
 }
 
 class BackOffice extends Component<PropsType, State>{
@@ -17,9 +21,11 @@ class BackOffice extends Component<PropsType, State>{
         super(props);
         this.toggleItemAdd = this.toggleItemAdd.bind(this);
         this.toggleShopEdit = this.toggleShopEdit.bind(this);
+        this.toggleShopEdit = this.toggleShopEdit.bind(this);
         this.state = {
             isOpenItemAdd: false,
-            isOpenShopEdit: false
+            isOpenShopEdit: false,
+            isOpenShopAddImage: false
         }
     }
 
@@ -28,9 +34,24 @@ class BackOffice extends Component<PropsType, State>{
             isOpenItemAdd: (!this.state.isOpenItemAdd)
         })
     }
+    toggleShopAddImage = () => {
+        this.setState({
+            isOpenShopAddImage: (!this.state.isOpenShopAddImage)
+        })
+    }
     toggleShopEdit = () => {
         this.setState({
             isOpenShopEdit: (!this.state.isOpenShopEdit)
+        })
+    }
+
+    const GetShopData = () => {
+        fetch('https://porchswing-server.herokuapp.com/shop/:id', {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.token //may not be necessary - or it may be necessary, might need to add a protected route in the controller to get shop by user ID (without it being in the url)
+            })
         })
     }
 
@@ -39,7 +60,7 @@ class BackOffice extends Component<PropsType, State>{
             <div>
                 <h1>{this.props.title}</h1>
                 {
-                localStorage.getItem('shopOwner') === 'false' 
+                localStorage.getItem('shopOwner') !== 'true' 
                 ? 
                 //if they don't own a shop:
                 <div>
@@ -47,13 +68,21 @@ class BackOffice extends Component<PropsType, State>{
                 <h4>let's get working on your very own storefront.</h4>
                 <button onClick={this.toggleShopEdit}>start here</button>
                 <Modal isOpen={this.state.isOpenShopEdit}>
-                    <ShopEdit />
+                    <ShopEdit toggle={this.toggleShopEdit} updateShopOwner={this.props.updateShopOwner} />
                 </Modal>
                 </div>
                 : 
                 //if they do own a shop:
                 <div>
                 <h3>oh hey shop owner!</h3>
+                <img src={filler_logo} />
+                <br/>
+                <button onClick={this.toggleShopAddImage}>upload logo</button>
+                <Modal isOpen={this.state.isOpenShopAddImage}>
+                    <ShopAddImage toggle={this.toggleShopAddImage} />
+                </Modal>
+                <br/>
+                {/* <img src={url || 'http://via.placeholder.com/100x100'} alt='item-image' /> */}
                 <button onClick={this.toggleItemAdd}>add piece</button>
                 <Modal isOpen={this.state.isOpenItemAdd}>
                     <ItemAddImage toggle={this.toggleItemAdd} />

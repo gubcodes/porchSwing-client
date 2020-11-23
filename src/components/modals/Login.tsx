@@ -3,7 +3,7 @@ import { Form, FormGroup, Modal, ModalBody, ModalHeader, Label, Input, Button } 
 
 type PropsType = {
     updateToken: (token: string) => void;
-    updateShopOwner: (isShopOwner: boolean) => void;
+    updateShopOwner: (isShopOwner: string) => void;
 };
 
 type State = {
@@ -66,11 +66,11 @@ export default class Login extends React.Component<PropsType, State>{
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <Label htmlFor='email'>email</Label>
-                                <Input onChange={(e: any) => this.setState({email: e.target.value})} name='email' value={this.state.email} />
+                                <Input onChange={(e: any) => this.setState({email: e.target.value})} name='email' type='email' value={this.state.email} />
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor='password'>password</Label>
-                                <Input onChange={(e: any) => this.setState({password: e.target.value})} name='password' value={this.state.password} />
+                                <Input onChange={(e: any) => this.setState({password: e.target.value})} name='password' type='password' value={this.state.password} />
                             </FormGroup>
                             <FormGroup>
                                 <Button id='buttonHover' type='submit'  onClick={this.toggleModal}>login</Button>

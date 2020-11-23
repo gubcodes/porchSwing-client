@@ -66,8 +66,8 @@ export default class TitleBar extends React.Component<PropTypes, {}> {
                     <Route exact path="/"><Landing title='landing page'/></Route>
                     <Route exact path="/search"><SearchResults title='search page'/></Route>
                     <Route exact path="/storefront"><StoreFront title='storefront page'/></Route>
-                    <Route exact path="/backoffice"><BackOffice title='backoffice page'/></Route>
-                    <Route exact path="/register"><Register updateToken={this.props.updateToken}/></Route>
+                    <Route exact path="/backoffice"><BackOffice updateShopOwner={this.props.updateShopOwner} title='backoffice page'/></Route>
+                    <Route exact path="/register"><Register updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken}/></Route>
                     <Route exact path="/login"><Login updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken}/></Route>
                     {/* <Route exact path="/backoffice">{!isAuth ? <Redirect to='/' /> : <ListDisplay />}</Route> */}
                 </Switch>
