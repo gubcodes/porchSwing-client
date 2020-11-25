@@ -8,14 +8,17 @@ type State = {
 
 }
 
-export default class InfoEdit extends Component<PropsType, State>{
+export default class Profile extends Component<PropsType, State>{
     constructor(props: PropsType){
         super(props);
     }
 
     render() {
         return(
-            <h1>{this.props.title}</h1> //this will say whatever you pass down as props
+            <div>
+            <h1>{this.props.title}</h1>
+            <h4>add messages</h4>
+            </div>
         )
     }
 };

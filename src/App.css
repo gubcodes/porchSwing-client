@@ -1,0 +1,96 @@
+/* fonts */
+@import url('https://fonts.googleapis.com/css2?family=Beth+Ellen&family=Roboto+Slab&display=swap');
+/* cursive: 'Beth Ellen' */
+/* regular: 'Roboto Slab' */
+
+/* colors */
+/* red: #C44536 */
+/* yellow: #E9C46A */
+/* white: #FFFAF0 */
+/* dark red: #772E25 */
+
+.App {
+    background-color: #FFFAF0;
+}
+
+.button {
+    background-color: transparent;
+    font-family: 'Beth Ellen';
+    border: none;
+    color: #772E25;
+    font-size: 1.5em;
+    text-align: center;
+}
+.button:hover {
+    letter-spacing: .1em;
+    transition: 200ms;
+}
+.uploadFileButton {
+    font-family: 'Roboto Slab'
+}
+.centerText {
+    text-align: center;
+}
+h4 {
+    font-family: 'Roboto Slab';
+}
+h3 {
+    font-family: 'Roboto Slab';
+}
+h2 {
+    font-family: 'Roboto Slab';
+}
+h1 {
+    font-family: 'Roboto Slab';
+}
+Label {
+    font-family: 'Roboto Slab';
+}
+.x-button {
+    max-width: 30px;
+}
+/* navbar */
+.collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+    transition-duration: 0;
+}
+ul{
+    position: absolute;
+    right: 0px;
+    padding-right: 46px;
+    top: 70px;
+    padding-bottom: 20px;
+    text-align: right;
+    background-color: #C44536;
+    font-size: 1.2em;
+    width: 16%;
+}
+nav .navbar-nav li a{
+    color: #FFFAF0 !important;
+    }
+#Navbar {
+    background-color: #C44536;
+    font-family: 'Beth Ellen';
+}
+#NavbarBrand {
+    color: #FFFAF0;
+    font-size: 2em;
+}
+.modalBar {
+    background-color: #C44536;
+}
+/* // this is a black icon with 50% opacity */
+.navbar-light .navbar-toggler-icon {
+  background-image: url('./assets/images/hamburger.png')!important;
+  height: 50px;
+  width: 50px;
+}
+.navbar-light .navbar-toggler-icon:hover {
+    opacity: 100;
+}
+/* cards */
+.itemCardStyles {
+    max-width: 20%;
+}

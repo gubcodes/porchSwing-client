@@ -15,7 +15,7 @@ class Landing extends Component<PropsType, State>{
 
     render() {
         return(
-            <h1>{this.props.title}</h1> //this will say whatever you pass down as props
+            <h1>{this.props.title}</h1> //this will say whatever you pass down as props (named 'title')
         )
     }
 }

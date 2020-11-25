@@ -37,12 +37,14 @@ const ShopAddImage = (props) => {
         }
     };
 
+    //adding JS date to beginning of image file name
     let d = new Date();
     let n = d.getTime();
+    let milliseconds = n;
 
-    const handleUpload = () => {
+    function handleUpload() {
         console.log('handleUpload initialized');
-        const uploadTask = storage.ref(`images/${n}${image.name}`).put(image);
+        const uploadTask = storage.ref(`images/${milliseconds}${image.name}`).put(image);
         uploadTask.on(
             'state_changed',
             shapshot => {
@@ -57,7 +59,7 @@ const ShopAddImage = (props) => {
             () => {
                 storage
                     .ref('images')
-                    .child(image.name)
+                    .child(`${milliseconds}${image.name}`)
                     .getDownloadURL()
                     .then(url => {
                         console.log(url);

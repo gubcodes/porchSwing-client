@@ -4,7 +4,8 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import BackOffice from './pages/Page_BackOffice';
 import Landing from './pages/Page_Landing';
-import SearchResults from './pages/Page_SearchResults';
+import Profile from './pages/Page_Profile';
+// import SearchResults from './pages/Page_SearchResults';
 import StoreFront from './pages/Page_StoreFront';
 import Register from './modals/Register';
 import Login from './modals/Login';
@@ -32,8 +33,9 @@ export default class TitleBar extends React.Component<PropTypes, {}> {
     render() {
         return (
             <div>
-                <Navbar color="faded" light>
-                    <NavbarBrand href="/" className="mr-auto">porchSwing</NavbarBrand>
+                <Navbar id='Navbar' light>
+                {/* <Navbar color="faded" light> */}
+                    <NavbarBrand id='NavbarBrand' href="/" className="mr-auto">porchSwing</NavbarBrand>
                     <NavbarToggler onClick={this.changeOpen} className="mr-2" />
                     <Collapse isOpen={!this.state.isOpen} navbar>
                         <Nav navbar>
@@ -41,13 +43,13 @@ export default class TitleBar extends React.Component<PropTypes, {}> {
                                 <NavLink href="/search">search</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/storefront">my storefront</NavLink>
+                                <NavLink href="/storefront/:id">my storefront</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/backoffice">backoffice</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="/">profile</NavLink>
+                                <NavLink href="/profile">profile</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="/">sign out</NavLink>
@@ -64,8 +66,9 @@ export default class TitleBar extends React.Component<PropTypes, {}> {
                 </Navbar>
                 <Switch>
                     <Route exact path="/"><Landing title='landing page'/></Route>
-                    <Route exact path="/search"><SearchResults title='search page'/></Route>
-                    <Route exact path="/storefront"><StoreFront title='storefront page'/></Route>
+                    {/* <Route exact path="/search"><SearchResults title='search page'/></Route> */}
+                    <Route path="/storefront/:id"><StoreFront title='storefront page'/></Route>
+                    <Route exact path="/profile"><Profile title='profile page' /></Route>
                     <Route exact path="/backoffice"><BackOffice updateShopOwner={this.props.updateShopOwner} title='backoffice page'/></Route>
                     <Route exact path="/register"><Register updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken}/></Route>
                     <Route exact path="/login"><Login updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken}/></Route>

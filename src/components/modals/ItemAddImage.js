@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, FormGroup, Modal, ModalBody, Label, Input, Button } from 'reactstrap';
 import { storage } from '../../assets/firebase';
 import filler_item from '../../assets/images/filler_item.png';
+import cancel from '../../assets/images/cancel.png';
 
 const ItemAddImage = (props) => {
     const [itemName, setItemName] = useState('');
@@ -55,17 +56,13 @@ const ItemAddImage = (props) => {
         }
     };
 
-    // function getRandomInt(max) {
-    //     return Math.floor(Math.random() * Math.floor(max));
-    //   }
-
-    // let randomNumber = getRandomInt(1000000000);
-    
-        let d = new Date();
-        let n = d.getTime();
+    //adding JS date to beginning of image file name
+    let d = new Date();
+    let n = d.getTime();
+    let milliseconds = n;
 
     const handleUpload = () => {
-        const uploadTask = storage.ref(`images/${n}${image.name}`).put(image);
+        const uploadTask = storage.ref(`images/${milliseconds}${image.name}`).put(image);
         uploadTask.on(
             'state_changed',
             shapshot => {
@@ -80,7 +77,7 @@ const ItemAddImage = (props) => {
             () => {
                 storage
                     .ref('images')
-                    .child(image.name)
+                    .child(`${milliseconds}${image.name}`)
                     .getDownloadURL()
                     .then(url => {
                         // console.log(url);
@@ -94,53 +91,56 @@ const ItemAddImage = (props) => {
     return (
         <div>
             {/* <Modal isOpen={props.isOpenItemAdd}> */}
-                <FormGroup>
-                    <Button id='buttonHover' type='button' onClick={props.toggle}>X</Button>
-                </FormGroup>
-                <ModalBody>
-                    <Form onSubmit={handleSubmit}>
-                        {/* piece name */}
-                        <FormGroup>
-                            <Label htmlFor='item name'>piece name</Label>
-                            <Input onChange={(e) => setItemName(e.target.value)} name='item name' value={itemName} />
-                        </FormGroup>
-                        {/* piece description */}
-                        <FormGroup>
-                            <Label htmlFor='item description'>piece description</Label>
-                            <Input onChange={(e) => setItemDescription(e.target.value)} name='item description' value={itemDescription} />
-                        </FormGroup>
-                        {/* price */}
-                        <FormGroup>
-                            <Label htmlFor='item price'>price</Label>
-                            <Input onChange={(e) => setPrice(e.target.value)} name='item price' value={price} />
-                        </FormGroup>
-                        {/* quantity available */}
-                        <FormGroup>
-                            <Label htmlFor='quantity'>quantity available?</Label>
-                            <Input onChange={(e) => setQuantity(e.target.value)} name='quantity' value={quantity} />
-                        </FormGroup>
-                        {/* available now? */}
-                        <FormGroup check>
-                            <Label check>
-                                <Input type='checkbox' onClick={toggleAvailable} />
+            <div className='modalBar'>
+                <img src={cancel} id='buttonHover' className='x-button' onClick={props.toggle}></img>
+            </div>
+            <ModalBody>
+                <Form onSubmit={handleSubmit}>
+                    {/* piece name */}
+                    <FormGroup>
+                        <Label htmlFor='item name'>piece name</Label>
+                        <Input onChange={(e) => setItemName(e.target.value)} name='item name' value={itemName} />
+                    </FormGroup>
+                    {/* piece description */}
+                    <FormGroup>
+                        <Label htmlFor='item description'>piece description</Label>
+                        <Input onChange={(e) => setItemDescription(e.target.value)} name='item description' value={itemDescription} />
+                    </FormGroup>
+                    {/* price */}
+                    <FormGroup>
+                        <Label htmlFor='item price'>price</Label>
+                        <Input onChange={(e) => setPrice(e.target.value)} name='item price' value={price} />
+                    </FormGroup>
+                    {/* quantity available */}
+                    <FormGroup>
+                        <Label htmlFor='quantity'>quantity available?</Label>
+                        <Input onChange={(e) => setQuantity(e.target.value)} name='quantity' value={quantity} />
+                    </FormGroup>
+                    {/* available now? */}
+                    <FormGroup check>
+                        <Label check>
+                            <Input type='checkbox' onClick={toggleAvailable} />
                                     available now?
                                 </Label>
-                        </FormGroup>
-                        {/* add images here */}
-                            <div>
-                                {/* <progress value={progress} max='100' /> */}
-                                <br />
-                                <input type='file' onChange={handleChange} />
-                                <button type='button' onClick={handleUpload}>upload</button>
-                                <br />
-                                <img src={url || filler_item} alt='item-image' />
-                            </div>
-                        {/* button sends fetch and closes modal */}
-                        <FormGroup>
-                            <Button id='buttonHover' type='submit' onClick={props.toggle}>add piece</Button>
-                        </FormGroup>
-                    </Form>
-                </ModalBody>
+                    </FormGroup>
+                    {/* add images here */}
+                    <div className='centerText'>
+                        {/* <progress value={progress} max='100' /> */}
+                        <br />
+                        <input className='uploadFileButton' type='file' onChange={handleChange} />
+                        <br />
+                        <button className='button' type='button' onClick={handleUpload}>upload</button>
+                        <br />
+                        <img src={url || filler_item} alt='item-image' />
+                    </div>
+                    {/* button sends fetch and closes modal */}
+                    <FormGroup>
+                        <div className='centerText'>
+                            <button className='button' id='buttonHover' type='submit' onClick={props.toggle}>add piece</button>
+                        </div>
+                    </FormGroup>
+                </Form>
+            </ModalBody>
             {/* </Modal> */}
         </div>
     )
