@@ -18,8 +18,9 @@ export default class Landing extends Component<PropsType, State>{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.searchShops = this.searchShops.bind(this);
         this.searchItems = this.searchItems.bind(this);
+        this.randomSearch = this.randomSearch.bind(this);
         this.state = {
-            searchValue: 'er',
+            searchValue: '',
             shopData: [],
             itemData: []
         }
@@ -33,11 +34,27 @@ export default class Landing extends Component<PropsType, State>{
     }
 
     componentDidMount() {
+        this.randomSearch();
         this.searchItems();
         this.searchShops();
         console.log('componentDidMount fired');
         // TODO: try to get this to run on mount with a search that is a randomized array like ['sticker', 'pin', 'necklace'] etc...
     }
+
+    randomSearch = () => {
+        let array = ['stickers', 'necklace', 'pins', 'embroidery'];
+        let randomItem = array[Math.floor(Math.random()*array.length)];
+        this.setState({
+            searchValue: randomItem
+        })
+    }
+    // var myArray = [
+    //     "Apples",
+    //     "Bananas",
+    //     "Pears"
+    //   ];
+      
+    //   var randomItem = myArray[Math.floor(Math.random()*myArray.length)];
 
     searchShops = () => {
         fetch(`https://porchswing-server.herokuapp.com/shop/search/${this.state.searchValue}`, {

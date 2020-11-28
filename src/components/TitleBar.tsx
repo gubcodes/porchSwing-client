@@ -13,6 +13,7 @@ import Login from './modals/Login';
 type PropsType = {
     updateToken: (token: string) => void;
     updateShopOwner: (isShopOwner: string) => void;
+    clearToken: () => void;
     // logout: () => void;
     // isLoggedIn: boolean;
 }
@@ -21,7 +22,8 @@ type State = {
     isOpen: boolean,
     isOpenLogin: boolean,
     isOpenRegister: boolean,
-    currentUserFirstName: string
+    currentUserFirstName: string,
+    shopID: number
 };
 
 export default class TitleBar extends React.Component<PropsType, State> {
@@ -35,7 +37,8 @@ export default class TitleBar extends React.Component<PropsType, State> {
             isOpen: true,
             isOpenLogin: true,
             isOpenRegister: true,
-            currentUserFirstName: ''
+            currentUserFirstName: '',
+            shopID: 0
         };
     };
     // state = {
@@ -43,6 +46,31 @@ export default class TitleBar extends React.Component<PropsType, State> {
     //     isOpenLogin: true,
     //     isOpenRegister: true
     // };
+
+    getShopInfo = () => {
+        fetch('https://porchswing-server.herokuapp.com/shopauth/', {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.token
+            })
+        }).then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                data ?
+                    this.setState({
+                        shopID: data.userID,
+                        // shopLogo: data.logo,
+                        // shopName: data.shopName,
+                        // shopDescription: data.shopDescription
+                    }) : console.log('no data returned getShopInfo');
+                // this.getItems();
+            })
+    }
+
+    componentDidMount() {
+        this.getShopInfo();
+    }
 
     changeOpen = () => {
         this.setState({
@@ -63,70 +91,80 @@ export default class TitleBar extends React.Component<PropsType, State> {
         })
     };
 
-    changeUserName(userFirstName: string) {
+    changeUserName(userFirstName: string) { //i think this was a dead end attempt at getting the user's first name passed down to sender in message modal
         this.setState({
             currentUserFirstName: (userFirstName)
         })
         console.log(userFirstName);
     };
 
-    // function updateToken(newToken: string) {
-    //     localStorage.setItem("token", newToken);
-    //     setSessionToken(newToken);
-    //     console.log(sessionToken);
-    //   }
-
     render() {
         return (
             <div>
                 <Navbar id='Navbar' light>
-                {/* <Navbar color="faded" light> */}
+                    {/* <Navbar color="faded" light> */}
                     <NavbarBrand id='NavbarBrand' href="/" className="mr-auto">porchSwing</NavbarBrand>
-                    <NavbarToggler onClick={this.changeOpen} className="mr-2" />
+                    <NavbarToggler onClick={this.changeOpen} className="mr-2 button" />
                     <Collapse isOpen={!this.state.isOpen} navbar>
                         <Nav navbar>
-                            <NavItem>
-                                <NavLink href="/search">search</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/storefront/:id">my storefront</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/backoffice">backoffice</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/profile">profile</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="/">sign out</NavLink>
-                            </NavItem>
+
                             {/* if not logged in: */}
-                            <NavItem onClick={this.toggleLoginModal}>
-                                <NavLink href="#">login</NavLink>
-                            </NavItem>
-                            <NavItem onClick={this.toggleRegisterModal}>
-                                <NavLink href="#">sign up</NavLink>
-                            </NavItem>
+                            {
+                                localStorage.token
+                                    ?
+                                    <div>
+                                        <NavItem>
+                                            <NavLink href="/">search</NavLink>
+                                        </NavItem>
+                                        {
+                                            localStorage.shopOwner == 'true'
+                                                ?
+                                                <NavItem>
+                                                    <NavLink href={`/storefront/${this.state.shopID}`}>my storefront</NavLink>
+                                                </NavItem>
+                                                :
+                                                <></>
+                                        }
+                                        <NavItem>
+                                            <NavLink href="/backoffice">back office</NavLink>
+                                        </NavItem>
+                                        <NavItem>
+                                            <NavLink href="/profile">profile</NavLink>
+                                        </NavItem>
+                                        <NavItem onClick={this.props.clearToken}>
+                                            <NavLink href="/">sign out</NavLink>
+                                        </NavItem>
+                                    </div>
+                                    :
+                                    <div>
+                                        <NavItem onClick={this.toggleLoginModal}>
+                                            <NavLink href="#">login</NavLink>
+                                        </NavItem>
+                                        <NavItem onClick={this.toggleRegisterModal}>
+                                            <NavLink href="#">sign up</NavLink>
+                                        </NavItem>
+                                    </div>
+                            }
                         </Nav>
                     </Collapse>
                 </Navbar>
                 <Switch>
-                    <Route exact path="/"><Landing title='landing page'/></Route>
+                    <Route exact path="/"><Landing title='landing page' /></Route>
                     {/* <Route exact path="/search"><SearchResults title='search page'/></Route> */}
-                    <Route path="/storefront/:id"><StoreFront senderUserName={this.state.currentUserFirstName} title='storefront page'/></Route>
-                    <Route exact path="/profile"><Profile currentUserName={this.state.currentUserFirstName}title='profile page' /></Route>
-                    <Route exact path="/backoffice"><BackOffice updateShopOwner={this.props.updateShopOwner} title='backoffice page'/></Route>
+                    <Route path="/storefront/:id"><StoreFront senderUserName={this.state.currentUserFirstName} title='storefront page' /></Route>
+                    <Route exact path="/profile"><Profile currentUserName={this.state.currentUserFirstName} title='profile page' /></Route>
+                    <Route exact path="/backoffice"><BackOffice updateShopOwner={this.props.updateShopOwner} title='backoffice page' /></Route>
                     {/* <Route exact path="/register"><Register updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken}/></Route> */}
                     {/* <Route exact path="/login"><Login updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken}/></Route> */}
                     {/* <Route exact path="/backoffice">{!isAuth ? <Redirect to='/' /> : <ListDisplay />}</Route> */}
                 </Switch>
                 <Modal isOpen={!this.state.isOpenLogin} toggle={this.toggleLoginModal}>
-                <Login updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken} toggle={this.toggleLoginModal} changeUserName={this.changeUserName}/>
+                    <Login updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken} toggle={this.toggleLoginModal} changeUserName={this.changeUserName} />
                 </Modal>
                 <Modal isOpen={!this.state.isOpenRegister} toggle={this.toggleRegisterModal}>
-                <Register updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken} toggle={this.toggleRegisterModal} changeUserName={this.changeUserName}/>
+                    <Register updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken} toggle={this.toggleRegisterModal} changeUserName={this.changeUserName} />
                 </Modal>
-                
+
             </div>
         );
     }

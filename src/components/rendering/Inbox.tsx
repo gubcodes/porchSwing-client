@@ -20,7 +20,7 @@ export default class Inbox extends Component<PropsType, State>{
 
     render() {
         return (
-            <tr>
+            <tr style={!this.props.read ? {fontWeight: 'bold'} : {fontWeight: 'normal'} }>
                 <td>{this.props.from}</td>
                 <td>{this.props.subject}</td>
                 <td>{this.props.message}</td>

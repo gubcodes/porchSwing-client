@@ -99,10 +99,17 @@ nav .navbar-nav li a{
   background-image: url('./assets/images/hamburger.png')!important;
   height: 50px;
   width: 50px;
+  outline: none!important;
+  border-color: transparent;
+  opacity: 100;
 }
 .navbar-light .navbar-toggler-icon:hover {
-    opacity: 100;
+    /* opacity: 50%; */
+    background-image: url('./assets/images/down_caret.png')!important;
 }
+/* button.navbar-toggler.ml-auto.hidden-sm-up.float-xs-right:focus {
+    background-image: url('./assets/images/up_caret.png')!important;
+} */
 /* cards */
 .itemCardStyles {
     max-width: 20%;

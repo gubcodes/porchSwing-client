@@ -24,10 +24,16 @@ const App: React.FunctionComponent = () => {
     console.log(shopOwner);
   }  
 
+  //remove token + shopowner from local storage
+  function clearToken (){ //logout
+    localStorage.clear();
+    // setSessionToken('');
+  }
+
   return (
     <div className="App">
       <Router>
-      <TitleBar updateShopOwner={updateShopOwner} updateToken={updateToken}/>
+      <TitleBar updateShopOwner={updateShopOwner} updateToken={updateToken} clearToken={clearToken} />
       </Router>
     </div>
   );
