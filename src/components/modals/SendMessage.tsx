@@ -1,41 +1,48 @@
 import React, { Component } from 'react';
 import { ModalHeader, Form, FormGroup, Modal, ModalBody, Label, Input, Button } from 'reactstrap';
 
-//TODO: add subject to chat model when dropping tables 
-
 type PropsType = {
     toggle: () => void;
     shop: number;
+    shopName: string;
+    senderUserName: string
 }
 
 type State = {
-    // subject: string,
+    subjectData: string,
     body: string
 }
 
 export default class SendMessage extends Component<PropsType, State>{
     constructor(props: PropsType) {
         super(props);
-
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.state = {
-            // subject: '',
+            subjectData: '',
             body: ''
         }
     }
 
     handleSubmit(e: any) {
         e.preventDefault();
-        // let subject = this.state.subject;
+        console.log(this.props.shop);
+        console.log(this.props.senderUserName);
+        let subjectData = this.state.subjectData;
         let body = this.state.body;
         let receiverUserID = this.props.shop;
+        let senderUserName = this.props.senderUserName;
+        let receiverUserName = this.props.shopName;
 
-        fetch('https://porchswing-server.herokuapp.com/shopauth/', {
+        fetch('https://porchswing-server.herokuapp.com/chatauth/', {
             method: 'POST',
             body: JSON.stringify({
                 chatdata: {
-                    // subject: subject,
+                    subject: subjectData,
                     message: body,
-                    receiverUserID: receiverUserID 
+                    receiverUserID: receiverUserID,
+                    read: false,
+                    senderUserName: senderUserName,
+                    receiverUserName: receiverUserName
                 }
             }),
             headers: new Headers({
@@ -52,19 +59,26 @@ export default class SendMessage extends Component<PropsType, State>{
     render() {
         return (
             <div>
+                <ModalHeader toggle={this.props.toggle}>
                 <FormGroup>
                     <Button id='buttonHover' type='submit' onClick={this.props.toggle}>X</Button>
                 </FormGroup>
+                </ModalHeader>
                 <ModalBody>
-                    <Form onsubmit={this.handleSubmit}>
-                        {/* <FormGroup>
+                    <Form onSubmit={this.handleSubmit}>
+                        <FormGroup>
                         <Label htmlFor='message subject'>subject</Label>
-                        <Input onChange={(e: any) => this.setState({subject: e.target.value})} name='message subject' value={this.state.subject} />
-                        </FormGroup> */}
+                        <Input onChange={(e: any) => this.setState({subjectData: e.target.value})} name='message subject' value={this.state.subjectData} />
+                        </FormGroup>
                         <FormGroup>
                         <Label htmlFor='message body'>message</Label>
-                        <Input type='textarea' onChange={(e: any) => this.setState({body: e.target.value})} name='message body' value={this.state.body} />
+                        <Input onChange={(e: any) => this.setState({body: e.target.value})} name='message body' type='textarea' value={this.state.body} />
                         </FormGroup>
+                        <FormGroup>
+                        <div className='centerText'>
+                            <button className='button' id='buttonHover' type='submit' onClick={this.props.toggle}>send message</button>
+                        </div>
+                    </FormGroup>
                     </Form>
                 </ModalBody>
             </div>

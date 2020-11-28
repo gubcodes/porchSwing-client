@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Container, Row } from 'reactstrap';
+import { Modal, Container, Row, ModalHeader } from 'reactstrap';
 import ItemAddImage from '../modals/ItemAddImage.js';
 import ShopAddImage from '../modals/ShopAddImage.js';
 import ShopEdit from '../modals/ShopEdit';
@@ -139,13 +139,13 @@ class BackOffice extends Component<PropsType, State>{
                 <h2>{this.state.shopName}</h2>
                 <br/>
                 <h4>{this.state.shopDescription}</h4>
-                <Modal isOpen={this.state.isOpenShopAddImage}>
+                <Modal isOpen={this.state.isOpenShopAddImage} toggle={this.toggleShopAddImage}>
                     <ShopAddImage toggle={this.toggleShopAddImage} />
                 </Modal>
                 <br/>
                 {/* <img src={url || 'http://via.placeholder.com/100x100'} alt='item-image' /> */}
                 <button className='button' onClick={this.toggleItemAdd}>add piece</button>
-                <Modal isOpen={this.state.isOpenItemAdd}>
+                <Modal isOpen={this.state.isOpenItemAdd} toggle={this.toggleItemAdd}>
                     <ItemAddImage toggle={this.toggleItemAdd} />
                 </Modal>
                 <div>

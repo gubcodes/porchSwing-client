@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, Modal } from 'reactstrap';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import BackOffice from './pages/Page_BackOffice';
@@ -10,18 +10,39 @@ import StoreFront from './pages/Page_StoreFront';
 import Register from './modals/Register';
 import Login from './modals/Login';
 
-type PropTypes = {
+type PropsType = {
     updateToken: (token: string) => void;
     updateShopOwner: (isShopOwner: string) => void;
     // logout: () => void;
     // isLoggedIn: boolean;
 }
 
-export default class TitleBar extends React.Component<PropTypes, {}> {
+type State = {
+    isOpen: boolean,
+    isOpenLogin: boolean,
+    isOpenRegister: boolean,
+    currentUserFirstName: string
+};
 
-    state = {
-        isOpen: true
+export default class TitleBar extends React.Component<PropsType, State> {
+    constructor(props: PropsType) {
+        super(props);
+        this.changeOpen = this.changeOpen.bind(this);
+        this.toggleLoginModal = this.toggleLoginModal.bind(this);
+        this.toggleRegisterModal = this.toggleRegisterModal.bind(this);
+        this.changeUserName = this.changeUserName.bind(this);
+        this.state = {
+            isOpen: true,
+            isOpenLogin: true,
+            isOpenRegister: true,
+            currentUserFirstName: ''
+        };
     };
+    // state = {
+    //     isOpen: true,
+    //     isOpenLogin: true,
+    //     isOpenRegister: true
+    // };
 
     changeOpen = () => {
         this.setState({
@@ -29,6 +50,31 @@ export default class TitleBar extends React.Component<PropTypes, {}> {
         });
         console.log('test');
     }
+
+    toggleLoginModal() {
+        this.setState({
+            isOpenLogin: (!this.state.isOpenLogin)
+        })
+    };
+
+    toggleRegisterModal() {
+        this.setState({
+            isOpenRegister: (!this.state.isOpenRegister)
+        })
+    };
+
+    changeUserName(userFirstName: string) {
+        this.setState({
+            currentUserFirstName: (userFirstName)
+        })
+        console.log(userFirstName);
+    };
+
+    // function updateToken(newToken: string) {
+    //     localStorage.setItem("token", newToken);
+    //     setSessionToken(newToken);
+    //     console.log(sessionToken);
+    //   }
 
     render() {
         return (
@@ -55,11 +101,11 @@ export default class TitleBar extends React.Component<PropTypes, {}> {
                                 <NavLink href="/">sign out</NavLink>
                             </NavItem>
                             {/* if not logged in: */}
-                            <NavItem>
-                                <NavLink href="/login">login</NavLink>
+                            <NavItem onClick={this.toggleLoginModal}>
+                                <NavLink href="#">login</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink href="/register">sign up</NavLink>
+                            <NavItem onClick={this.toggleRegisterModal}>
+                                <NavLink href="#">sign up</NavLink>
                             </NavItem>
                         </Nav>
                     </Collapse>
@@ -67,13 +113,20 @@ export default class TitleBar extends React.Component<PropTypes, {}> {
                 <Switch>
                     <Route exact path="/"><Landing title='landing page'/></Route>
                     {/* <Route exact path="/search"><SearchResults title='search page'/></Route> */}
-                    <Route path="/storefront/:id"><StoreFront title='storefront page'/></Route>
-                    <Route exact path="/profile"><Profile title='profile page' /></Route>
+                    <Route path="/storefront/:id"><StoreFront senderUserName={this.state.currentUserFirstName} title='storefront page'/></Route>
+                    <Route exact path="/profile"><Profile currentUserName={this.state.currentUserFirstName}title='profile page' /></Route>
                     <Route exact path="/backoffice"><BackOffice updateShopOwner={this.props.updateShopOwner} title='backoffice page'/></Route>
-                    <Route exact path="/register"><Register updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken}/></Route>
-                    <Route exact path="/login"><Login updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken}/></Route>
+                    {/* <Route exact path="/register"><Register updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken}/></Route> */}
+                    {/* <Route exact path="/login"><Login updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken}/></Route> */}
                     {/* <Route exact path="/backoffice">{!isAuth ? <Redirect to='/' /> : <ListDisplay />}</Route> */}
                 </Switch>
+                <Modal isOpen={!this.state.isOpenLogin} toggle={this.toggleLoginModal}>
+                <Login updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken} toggle={this.toggleLoginModal} changeUserName={this.changeUserName}/>
+                </Modal>
+                <Modal isOpen={!this.state.isOpenRegister} toggle={this.toggleRegisterModal}>
+                <Register updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken} toggle={this.toggleRegisterModal} changeUserName={this.changeUserName}/>
+                </Modal>
+                
             </div>
         );
     }

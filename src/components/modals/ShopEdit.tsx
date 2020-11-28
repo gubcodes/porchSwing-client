@@ -119,7 +119,7 @@ export default class ShopEdit extends Component<PropsType, State>{
                         {/* shop description */}
                         <FormGroup>
                         <Label htmlFor='shop description'>shop description</Label>
-                            <Input onChange={(e: any) => this.setState({shopDescription: e.target.value})} name='shop description' ype='text' value={this.state.shopDescription} />
+                            <Input onChange={(e: any) => this.setState({shopDescription: e.target.value})} name='shop description' type='textarea' value={this.state.shopDescription} />
                         </FormGroup>
                         <FormGroup>
                             <Button id='buttonhover' type='submit' onClick={this.props.toggle}>update storefront</Button>

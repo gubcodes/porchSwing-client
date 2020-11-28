@@ -4,6 +4,8 @@ import { Form, FormGroup, Modal, ModalBody, ModalHeader, Label, Input, Button } 
 type PropsType = {
     updateToken: (token: string) => void;
     updateShopOwner: (isShopOwner: string) => void;
+    toggle: () => void;
+    changeUserName: (userFirstName: string) => void;
 }
 
 type State = {
@@ -21,7 +23,6 @@ export default class Register extends React.Component<PropsType, State> {
     constructor(props: PropsType) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.toggleModal = this.toggleModal.bind(this);
         this.state = {
             firstName: '',
             lastName: '',
@@ -64,21 +65,23 @@ export default class Register extends React.Component<PropsType, State> {
             console.log(data)
             this.props.updateToken(data.sessionToken);
             this.props.updateShopOwner(data.user.shopOwner);
+            this.props.changeUserName(data.user.firstName);
+            //add function from titlebar that stores username in variable
         })
     };
 
-    toggleModal() {
-        this.setState({
-            isOpen: (!this.state.isOpen)
-        })
-    };
+    // toggleModal() {
+    //     this.setState({
+    //         isOpen: (!this.state.isOpen)
+    //     })
+    // };
 
     render() {
         return (
             <div>
-                <Modal isOpen={!this.state.isOpen}>
+                {/* <Modal isOpen={!this.state.isOpen}> */}
                     <FormGroup>
-                        <Button id='buttonHover' type='submit' onClick={this.toggleModal}>X</Button>
+                        <Button id='buttonHover' type='submit' onClick={this.props.toggle}>X</Button>
                     </FormGroup>
                     {/* <ModalHeader /> */}
                     <ModalBody>
@@ -108,11 +111,11 @@ export default class Register extends React.Component<PropsType, State> {
                                 <Input onChange={(e: any) => this.setState({confirmPassword: e.target.value})} name='confirm password' type='password' value={this.state.confirmPassword} />
                             </FormGroup>
                             <FormGroup>
-                                <Button id='buttonHover' type='submit'  onClick={this.toggleModal}>sign up</Button>
+                                <Button id='buttonHover' type='submit'  onClick={this.props.toggle}>sign up</Button>
                             </FormGroup>
                         </Form>
                     </ModalBody>
-                </Modal>
+                {/* </Modal> */}
             </div>
         )
     }

@@ -4,23 +4,25 @@ import { Form, FormGroup, Modal, ModalBody, ModalHeader, Label, Input, Button } 
 type PropsType = {
     updateToken: (token: string) => void;
     updateShopOwner: (isShopOwner: string) => void;
+    toggle: () => void;
+    changeUserName: (userFirstName: string) => void;
 };
 
 type State = {
     email: string,
     password: string,
-    isOpen: boolean
+    // isOpen: boolean
 };
 
 export default class Login extends React.Component<PropsType, State>{
     constructor(props: PropsType) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.toggleModal = this.toggleModal.bind(this);
+        // this.toggle = this.toggle.bind(this);
         this.state = {
             email: '',
             password: '',
-            isOpen: false
+            // isOpen: false
         };
     };
 
@@ -46,23 +48,25 @@ export default class Login extends React.Component<PropsType, State>{
             console.log(data)
             this.props.updateToken(data.sessionToken);
             this.props.updateShopOwner(data.user.shopOwner); 
+            this.props.changeUserName(data.user.firstName);
         })
     };
 
-    toggleModal = () => {
-        this.setState({
-            isOpen: (!this.state.isOpen)
-        })
-    };
+    // toggle = () => {
+    //     this.setState({
+    //         isOpen: (!this.state.isOpen)
+    //     })
+    // };
 
     render() {
         return (
             <div>
-                <Modal isOpen={!this.state.isOpen}>
-                    <FormGroup>
-                        <Button id='buttonHover' type='submit' onClick={this.toggleModal}>X</Button>
-                    </FormGroup>
+                {/* <Modal isOpen={!this.state.isOpen} toggle={this.toggle}> */}
+                    <ModalHeader toggle={this.props.toggle}>login</ModalHeader>
                     <ModalBody>
+                    <FormGroup>
+                        <Button id='buttonHover' type='submit' onClick={this.props.toggle}>X</Button>
+                    </FormGroup>
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <Label htmlFor='email'>email</Label>
@@ -73,11 +77,11 @@ export default class Login extends React.Component<PropsType, State>{
                                 <Input onChange={(e: any) => this.setState({password: e.target.value})} name='password' type='password' value={this.state.password} />
                             </FormGroup>
                             <FormGroup>
-                                <Button id='buttonHover' type='submit'  onClick={this.toggleModal}>login</Button>
+                                <Button id='buttonHover' type='submit' onClick={this.props.toggle}>login</Button>
                             </FormGroup>
                         </Form>
                     </ModalBody>
-                </Modal>
+                {/* </Modal> */}
             </div>
         )
     }

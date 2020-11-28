@@ -6,6 +6,7 @@ import transparent_logo from '../../assets/images/transparent_logo.png';
 
 type PropsType = {
     title: string,
+    senderUserName: string
 }
 
 type State = {
@@ -14,7 +15,9 @@ type State = {
     logo: string,
     shopName: string,
     shopDescription: string,
-    isOpenSendMessage: boolean
+    isOpenSendMessage: boolean,
+    shop: number,
+    userName: string
 }
 
 class StoreFront extends Component<PropsType, State>{
@@ -23,13 +26,16 @@ class StoreFront extends Component<PropsType, State>{
         this.searchShops = this.searchShops.bind(this);
         this.searchItems = this.searchItems.bind(this);
         this.toggleSendMessage = this.toggleSendMessage.bind(this);
+        this.getUser = this.getUser.bind(this);
         this.state = {
             shopData: {},
             itemData: [],
             logo: '',
             shopName: '',
             shopDescription: '',
-            isOpenSendMessage: false
+            isOpenSendMessage: false,
+            shop: 0,
+            userName: ''
         }
     }
 
@@ -42,6 +48,7 @@ class StoreFront extends Component<PropsType, State>{
     componentDidMount() {
         this.searchShops();
         this.searchItems();
+        this.getUser();
     }
 
     searchShops = () => {
@@ -59,7 +66,8 @@ class StoreFront extends Component<PropsType, State>{
                     shopData: data,
                     logo: data.logo,
                     shopName: data.shopName,
-                    shopDescription: data.shopDescription
+                    shopDescription: data.shopDescription,
+                    shop: data.userID
                 });
                 console.log(this.state.shopData);
             })
@@ -83,6 +91,24 @@ class StoreFront extends Component<PropsType, State>{
             })
     };
 
+    getUser = () => {
+        console.log('getUser fired')
+        fetch(`https://porchswing-server.herokuapp.com/userauth/`, {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.token
+            })
+        }).then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                this.setState({
+                    userName: data.firstName
+                });
+                console.log(this.state.userName);
+            })
+    };
+
     render() {
         return(
             <div>
@@ -99,7 +125,7 @@ class StoreFront extends Component<PropsType, State>{
                     <h4>{this.state.shopDescription}</h4>
                     <button onClick={this.toggleSendMessage}>contact this shop</button>
                     <Modal isOpen={this.state.isOpenSendMessage}>
-                        <SendMessage toggle={this.toggleSendMessage} />
+                        <SendMessage shopName={this.state.shopName} shop={this.state.shop} toggle={this.toggleSendMessage} senderUserName={this.state.userName} />
                     </Modal>
                     <h3>pieces currently available from {this.state.shopName}</h3>
                     {/* map component to render our pieces as cards, unlimited */}

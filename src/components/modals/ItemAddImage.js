@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, FormGroup, Modal, ModalBody, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Modal, ModalBody, Label, Input, Button, ModalHeader } from 'reactstrap';
 import { storage } from '../../assets/firebase';
 import filler_item from '../../assets/images/filler_item.png';
 import cancel from '../../assets/images/cancel.png';
@@ -91,6 +91,8 @@ const ItemAddImage = (props) => {
     return (
         <div>
             {/* <Modal isOpen={props.isOpenItemAdd}> */}
+            {/* <Modal toggle={props.toggle}> */}
+            {/* <ModalHeader {props.toggle}/> */}
             <div className='modalBar'>
                 <img src={cancel} id='buttonHover' className='x-button' onClick={props.toggle}></img>
             </div>
@@ -104,7 +106,7 @@ const ItemAddImage = (props) => {
                     {/* piece description */}
                     <FormGroup>
                         <Label htmlFor='item description'>piece description</Label>
-                        <Input onChange={(e) => setItemDescription(e.target.value)} name='item description' value={itemDescription} />
+                        <Input onChange={(e) => setItemDescription(e.target.value)} type='textarea' name='item description' value={itemDescription} />
                     </FormGroup>
                     {/* price */}
                     <FormGroup>
@@ -114,7 +116,7 @@ const ItemAddImage = (props) => {
                     {/* quantity available */}
                     <FormGroup>
                         <Label htmlFor='quantity'>quantity available?</Label>
-                        <Input onChange={(e) => setQuantity(e.target.value)} name='quantity' value={quantity} />
+                        <Input onChange={(e) => setQuantity(e.target.value)} type='number' name='quantity' value={quantity} />
                     </FormGroup>
                     {/* available now? */}
                     <FormGroup check>
