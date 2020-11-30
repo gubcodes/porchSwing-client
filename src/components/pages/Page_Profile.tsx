@@ -13,7 +13,11 @@ type State = {
     inboxData: any[],
     outboxData: any[],
     renderInbox: boolean,
-    isOpenSendMessage: boolean
+    isOpenSendMessage: boolean,
+    userName: string,
+    userID: number,
+    receiverFirstName: string,
+    receiverID: number
 }
 
 export default class Profile extends Component<PropsType, State>{
@@ -22,12 +26,17 @@ export default class Profile extends Component<PropsType, State>{
         this.fetchInbox = this.fetchInbox.bind(this);
         this.fetchOutbox = this.fetchOutbox.bind(this);
         this.toggleInboxRender = this.toggleInboxRender.bind(this);
+        this.getUser = this.getUser.bind(this);
         // this.toggleOutboxRender = this.toggleOutboxRender.bind(this);
         this.state = {
             inboxData: [],
             outboxData: [],
             renderInbox: true,
-            isOpenSendMessage: false
+            isOpenSendMessage: false,
+            userName: '',
+            userID: 0,
+            receiverFirstName: '',
+            receiverID: 0
         }
     }
 
@@ -44,7 +53,7 @@ export default class Profile extends Component<PropsType, State>{
                 this.setState({
                     inboxData: data
                 });
-                console.log(this.state.inboxData);
+                console.log('fetchInbox', this.state.inboxData);
             })
     };
 
@@ -61,7 +70,26 @@ export default class Profile extends Component<PropsType, State>{
                 this.setState({
                     outboxData: data
                 });
-                console.log(this.state.outboxData);
+                console.log('fetchOutbox', this.state.outboxData);
+            })
+    };
+
+    getUser = () => {
+        console.log('getUser fired')
+        fetch(`https://porchswing-server.herokuapp.com/userauth/`, {
+            method: 'GET',
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.token
+            })
+        }).then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                this.setState({
+                    userName: data.firstName,
+                    userID: data.id
+                });
+                console.log(this.state.userName);
             })
     };
 
@@ -72,22 +100,30 @@ export default class Profile extends Component<PropsType, State>{
         })
     }
 
-    toggleSendMessage = () => {
-        this.setState({
-            isOpenSendMessage: (!this.state.isOpenSendMessage)
-        })
-    }
+    // toggleSendMessage = () => {
+    //     this.setState({
+    //         isOpenSendMessage: (!this.state.isOpenSendMessage)
+    //     })
+    // }
+
+    // setReceiverInfo = (inboxData: any) => {
+    //     this.setState({
+    //         receiverFirstName: inboxData.firstName,
+    //         receiverID: inboxData.id
+    //     })
+    // }
 
     componentDidMount() {
         this.fetchInbox();
         this.fetchOutbox();
+        this.getUser();
     }
 
     render() {
         return (
             <div>
                 <h1>{this.props.title}</h1>
-                <h3>welcome back, {this.props.currentUserName}</h3>
+                <h3>welcome back, {this.state.userName}!</h3>
                 {
                     this.state.renderInbox === true
                         ?
@@ -124,7 +160,7 @@ export default class Profile extends Component<PropsType, State>{
                                 </thead>
                                 <tbody>
                                     {this.state.inboxData.slice(0).reverse().map((potato) =>
-                                        <Inbox inboxData={potato} from={potato.senderUserName} subject={potato.subject} message={potato.message} read={potato.read} />
+                                        <Inbox inboxData={potato} from={potato.senderUserName} subject={potato.subject} message={potato.message} read={potato.read} currentUserName={this.state.userName} currentUserID={this.state.userID} fetchInbox={this.fetchInbox} fetchOutbox={this.fetchOutbox} />
                                     )}
                                 </tbody>
                             </Table>
@@ -147,10 +183,9 @@ export default class Profile extends Component<PropsType, State>{
                             </Table>
                         </div>
                 }
-                <Modal isOpen={this.state.isOpenSendMessage}>
-                    <SendMessage shopName={this.state.shopName} shop={this.state.shop} toggle={this.toggleSendMessage} senderUserName={this.state.userName} />
-                    {/* //TODO: send the right props down, add in a fetch above to get the user information */}
-                </Modal>
+                {/* <Modal isOpen={this.state.isOpenSendMessage}>
+                    <SendMessage shopName={this.state.receiverFirstName} shop={this.state.receiverID} toggle={this.toggleSendMessage} senderUserName={this.state.userName} />
+                </Modal> */}
             </div>
         )
     }

@@ -120,7 +120,7 @@ class StoreFront extends Component<PropsType, State>{
                     :
                     <div>
                         {/* <img src={this.state.shopLogo || filler_logo} alt='item-image' /> */}
-                    <img src={this.state.logo} />
+                    <img className='logoWidth' src={this.state.logo} />
                     <h1>{this.state.shopName}</h1>
                     <h4>{this.state.shopDescription}</h4>
                     <button onClick={this.toggleSendMessage}>contact this shop</button>

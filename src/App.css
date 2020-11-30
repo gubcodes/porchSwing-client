@@ -32,11 +32,25 @@
     transition: 200ms;
     outline: none !important;
 }
+.button a {
+    color: #772E25;
+    text-decoration: none;
+}
+.button a:hover {
+    color: #772E25;
+    text-decoration: none;
+}
 .uploadFileButton {
     font-family: 'Roboto Slab'
 }
 .centerText {
     text-align: center;
+}
+p {
+    font-family: 'Roboto Slab';
+}
+h5 {
+    font-family: 'Roboto Slab';
 }
 h4 {
     font-family: 'Roboto Slab';
@@ -62,6 +76,11 @@ Label {
 .table tbody {
     font-family: 'Roboto Slab';
 }
+.messageLink {
+    /* font-family: 'Roboto Slab'; */
+    text-decoration: none;
+    color: black;
+}
 /* navbar */
 .collapsing {
     -webkit-transition: none;
@@ -78,10 +97,17 @@ ul{
     text-align: right;
     background-color: #C44536;
     font-size: 1.2em;
-    width: 16%;
+    width: 240px;
+    border-radius: 3px;
 }
 nav .navbar-nav li a{
     color: #FFFAF0 !important;
+    transition: 200ms;
+    }
+nav .navbar-nav li a:hover{
+    color: #FFFAF0 !important;
+    letter-spacing: .07em;
+    transition: 200ms;
     }
 #Navbar {
     background-color: #C44536;
@@ -114,3 +140,39 @@ nav .navbar-nav li a{
 .itemCardStyles {
     max-width: 20%;
 }
+.card-body {
+    background-color: #FFFAF0;
+}
+.card {
+    border: none!important;
+    outline: none;
+}
+/* modals */
+.modalHeader {
+    background-color: #C44536;
+    color: #FFFAF0;
+    font-family: 'Roboto Slab';
+}
+.modal-header .close {
+    color: #E9C46A;
+}
+.modal-header .close:hover {
+    color: #E9C46A;
+    opacity: 100%;
+}
+.modal-body {
+    background-color: #FFFAF0;
+ }
+
+ /* logo images */
+ .logoWidth {
+     max-width: 500px;
+ }
+ .logoWidthUpload {
+     max-width: 400px;
+ }
+
+ /* item images */
+ .itemWidth {
+     max-width: 150px;
+ }

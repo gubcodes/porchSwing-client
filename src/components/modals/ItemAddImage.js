@@ -133,7 +133,7 @@ const ItemAddImage = (props) => {
                         <br />
                         <button className='button' type='button' onClick={handleUpload}>upload</button>
                         <br />
-                        <img src={url || filler_item} alt='item-image' />
+                        <img className='itemWidth'src={url || filler_item} alt='item-image' />
                     </div>
                     {/* button sends fetch and closes modal */}
                     <FormGroup>

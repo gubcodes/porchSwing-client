@@ -22,7 +22,8 @@ type State = {
     shopDescription: string,
     itemData: any[],
     photo1: any,
-    itemName: any
+    itemName: any,
+    openSign: boolean,
 }
 
 class BackOffice extends Component<PropsType, State>{
@@ -42,7 +43,8 @@ class BackOffice extends Component<PropsType, State>{
             shopDescription: '',
             itemData: [],
             photo1: null,
-            itemName: null
+            itemName: null,
+            openSign: false
         }
     }
 
@@ -71,17 +73,18 @@ class BackOffice extends Component<PropsType, State>{
                 'Authorization': localStorage.token
             })
         }).then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-            data ?
-            this.setState({
-                shopData: data,
-                shopLogo: data.logo,
-                shopName: data.shopName,
-                shopDescription: data.shopDescription
-            }) : console.log('no data returned getShopInfo');
-            // this.getItems();
-        })
+            .then((data) => {
+                console.log(data)
+                data ?
+                    this.setState({
+                        shopData: data,
+                        shopLogo: data.logo,
+                        shopName: data.shopName,
+                        shopDescription: data.shopDescription,
+                        openSign: data.open
+                    }) : console.log('no data returned getShopInfo');
+                // this.getItems();
+            })
     }
 
     getItems = () => {
@@ -92,17 +95,40 @@ class BackOffice extends Component<PropsType, State>{
                 'Authorization': localStorage.token
             })
         }).then((res) => res.json())
-        .then((data) => {
-            console.log(data)
-            this.setState({
-                itemData: data,
-                photo1: data.photo1,
-                itemName: data.itemName
-            });
-            console.log(this.state.itemData);
-            console.log(this.state.itemName);
-        })
+            .then((data) => {
+                console.log(data)
+                this.setState({
+                    itemData: data,
+                    photo1: data.photo1,
+                    itemName: data.itemName
+                });
+                console.log(this.state.itemData);
+                console.log(this.state.itemName);
+            })
     }
+
+    flipTheSign = () => {
+        fetch('https://porchswing-server.herokuapp.com/shopauth/flip', {
+            method: 'PATCH',
+            body: JSON.stringify({
+                shopdata: {
+                    open: !this.state.openSign
+                }
+            }),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.token
+            })
+        }).then(
+            (response) => response.json()
+        ).then((data) => {
+            console.log(data)
+            console.log('sign flipped client')
+            this.setState({
+                openSign: !this.state.openSign
+            })
+        })
+    };
 
     //calling the fetches to get the shop data and items from the DB
     componentDidMount() {
@@ -115,57 +141,75 @@ class BackOffice extends Component<PropsType, State>{
             <div>
                 <h1>{this.props.title}</h1>
                 {
-                localStorage.getItem('shopOwner') !== 'true' 
-                ? 
-                //if they don't own a shop:
-                <div className='centerText'>
-                <h2>you haven't set up shop yet!</h2>
-                <h4>let's get working on your very own storefront.</h4>
-                <button onClick={this.toggleShopEdit}>start here</button>
-                <Modal isOpen={this.state.isOpenShopEdit}>
-                    <ShopEdit toggle={this.toggleShopEdit} updateShopOwner={this.props.updateShopOwner} />
-                </Modal>
-                </div>
-                : 
-                //if they do own a shop:
-                <div className='centerText'>
-                <h3>oh hey shop owner!</h3>
-                {/* <img src={filler_logo} /> */}
-                <img src={this.state.shopLogo || filler_logo} alt='item-image' />
-                {/* <img src={this.state.shopLogo} alt='item-image' /> */}
-                <br/>
-                <button className='button' onClick={this.toggleShopAddImage}>upload logo</button>
-                <br/>
-                <h2>{this.state.shopName}</h2>
-                <br/>
-                <h4>{this.state.shopDescription}</h4>
-                <Modal isOpen={this.state.isOpenShopAddImage} toggle={this.toggleShopAddImage}>
-                    <ShopAddImage toggle={this.toggleShopAddImage} />
-                </Modal>
-                <br/>
-                {/* <img src={url || 'http://via.placeholder.com/100x100'} alt='item-image' /> */}
-                <button className='button' onClick={this.toggleItemAdd}>add piece</button>
-                <Modal isOpen={this.state.isOpenItemAdd} toggle={this.toggleItemAdd}>
-                    <ItemAddImage toggle={this.toggleItemAdd} />
-                </Modal>
-                <div>
-                    {this.state.itemData.length === 0 
-                    ?
-                    <h4>you don't have any pieces yet!</h4>
-                    :
-                    <div>
-                    <h3>your pieces</h3>
-                    {/* map component to render our pieces as cards */}
-                    {this.state.itemData.map((potato) => 
-                    <ItemCards photo={potato.photo1} name={potato.itemName}/>
-                    // <ItemCards itemData={this.state.itemData} />
-                    )}
-                    </div>
+                    localStorage.getItem('shopOwner') !== 'true'
+                        ?
+                        //if they don't own a shop:
+                        <div className='centerText'>
+                            <h2>you haven't set up shop yet!</h2>
+                            <h4>let's get working on your very own storefront.</h4>
+                            <button className='button' onClick={this.toggleShopEdit}>start here</button>
+                            <Modal isOpen={this.state.isOpenShopEdit}>
+                                <ShopEdit toggle={this.toggleShopEdit} updateShopOwner={this.props.updateShopOwner} />
+                            </Modal>
+                        </div>
+                        :
+                        //if they do own a shop:
+                        <div className='centerText'>
+                            <h3>oh hey shop owner!</h3>
+                            {/* <img src={filler_logo} /> */}
+                            <img className='logoWidth'src={this.state.shopLogo || filler_logo} alt='item-image' />
+                            {/* <img src={this.state.shopLogo} alt='item-image' /> */}
+                            <br />
+                            <button className='button' onClick={this.toggleShopAddImage}>upload logo</button>
+                            <br />
+                            <h2>{this.state.shopName}</h2>
+                            <br />
+                            <h4>{this.state.shopDescription}</h4>
+                            <Modal isOpen={this.state.isOpenShopAddImage} toggle={this.toggleShopAddImage}>
+                                <ShopAddImage toggle={this.toggleShopAddImage} />
+                            </Modal>
+                            <br />
+                            {/* <img src={url || 'http://via.placeholder.com/100x100'} alt='item-image' /> */}
+                            {/* <button className='button' onClick={this.toggleItemAdd}>add piece</button> */}
+                            <Modal isOpen={this.state.isOpenItemAdd} toggle={this.toggleItemAdd}>
+                                <ItemAddImage toggle={this.toggleItemAdd} />
+                            </Modal>
+                            <div>
+                                {this.state.openSign === true
+                                ?
+                                <div>
+                                    <h3>your shop is open for business!</h3>
+                                    <p>the door is propped open, guests are welcome!</p>
+                                    {/* make this phrase a random array of positive messages, could also make it show if items have been sold! or numbers of dollars made on the site... later.*/}
+                                    <button onClick={this.flipTheSign} className='button'>flip the sign?</button>
+                                </div>
+                                :
+                                <div>
+                                <h3>your shop is closed!</h3>
+                                <p>the door is locked. your shop will not appear in search results.</p>
+                                <button onClick={this.flipTheSign} className='button'>flip the sign?</button>
+                            </div>
+                                }
+                            </div>
+                            <div>
+                            <button className='button' onClick={this.toggleItemAdd}>add piece</button>
+                                {this.state.itemData.length === 0
+                                    ?
+                                    <h4>you don't have any pieces yet!</h4>
+                                    :
+                                    <div>
+                                        <h3>your pieces</h3>
+                                        {/* map component to render our pieces as cards */}
+                                        {this.state.itemData.map((potato) =>
+                                            <ItemCards photo={potato.photo1} name={potato.itemName} />
+                                            // <ItemCards itemData={this.state.itemData} />
+                                        )}
+                                    </div>
+                                }
+                            </div>
+                        </div>
                 }
-                </div>
-                </div>
-                }
-                
+
             </div>
         )
     }

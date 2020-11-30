@@ -17,27 +17,27 @@ type PropsType = {
     photo: string,
     name: string,
     shop: number,
-    itemData: any
+    // itemData: any
 }
 
 type State = {
-    isOpenItemViewSearch: boolean
+    // isOpenItemViewSearch: boolean
 }
 
 export default class ItemCardsSearch extends Component<PropsType, State>{
     constructor(props: PropsType){
         super(props);
-        this.toggleItemViewSearch = this.toggleItemViewSearch.bind(this);
+        // this.toggleItemViewSearch = this.toggleItemViewSearch.bind(this);
         this.state = {
-            isOpenItemViewSearch: false
+            // isOpenItemViewSearch: false
         }
     }
 
-    toggleItemViewSearch = () => {
-        this.setState({
-            isOpenItemViewSearch: (!this.state.isOpenItemViewSearch)
-        })
-    }
+    // toggleItemViewSearch = () => {
+    //     this.setState({
+    //         isOpenItemViewSearch: (!this.state.isOpenItemViewSearch)
+    //     })
+    // }
 
     render() {
         return(
@@ -49,14 +49,14 @@ export default class ItemCardsSearch extends Component<PropsType, State>{
                         <CardImg src={this.props.photo} alt='item-img' />
                         <p>{this.props.name}</p>
                                 {/* <Button onClick={this.toggleItemViewSearch}>{this.props.name}</Button> */}
-                            {/* <a href={`/storefront/${this.props.shop}`} className='stretched-link'></a> */}
+                            <a href={`/storefront/${this.props.shop}`} className='stretched-link'></a>
                             {/* the above link will sort of get moved to ItemViewSearch */}
                             {/* add stretched link that opens ItemViewSearch */}
-                            <a href="#" onClick={this.toggleItemViewSearch} className='stretched-link'></a>
+                            {/* <a href="#" onClick={this.toggleItemViewSearch} className='stretched-link'></a> */}
                         </CardBody>
-                        <Modal isOpen={this.state.isOpenItemViewSearch} toggle={this.toggleItemViewSearch}>
+                        {/* <Modal isOpen={this.state.isOpenItemViewSearch} toggle={this.toggleItemViewSearch}>
                             <ItemViewSearch itemData={this.props.itemData} shopID={this.props.shop} toggle={this.toggleItemViewSearch}/>
-                        </Modal>
+                        </Modal> */}
                     </Card>
                 {/* </CardGroup> */}
             {/* </Col> */}

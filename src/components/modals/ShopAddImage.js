@@ -83,7 +83,7 @@ const ShopAddImage = (props) => {
                         <input type='file' onChange={handleChange} />
                         <button type='button' onClick={handleUpload}>upload</button>
                         <br />
-                        <img src={url || filler_logo} alt='logo' />
+                        <img className='logoWidthUpload' src={url || filler_logo} alt='logo' />
                     </div>
                     {/* button sends fetch and closes modal */}
                     <FormGroup>

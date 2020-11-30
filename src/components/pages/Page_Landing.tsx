@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, CardGroup } from 'reactstrap';
 import ItemCardsSearch from '../rendering/ItemCardsSearch';
+import ShopCardsSearch from '../rendering/ShopCardsSearch';
 
 type PropsType = {
     title: string
@@ -38,23 +39,15 @@ export default class Landing extends Component<PropsType, State>{
         this.searchItems();
         this.searchShops();
         console.log('componentDidMount fired');
-        // TODO: try to get this to run on mount with a search that is a randomized array like ['sticker', 'pin', 'necklace'] etc...
     }
 
     randomSearch = () => {
         let array = ['stickers', 'necklace', 'pins', 'embroidery'];
-        let randomItem = array[Math.floor(Math.random()*array.length)];
+        let randomItem = array[Math.floor(Math.random() * array.length)];
         this.setState({
             searchValue: randomItem
         })
     }
-    // var myArray = [
-    //     "Apples",
-    //     "Bananas",
-    //     "Pears"
-    //   ];
-      
-    //   var randomItem = myArray[Math.floor(Math.random()*myArray.length)];
 
     searchShops = () => {
         fetch(`https://porchswing-server.herokuapp.com/shop/search/${this.state.searchValue}`, {
@@ -70,6 +63,7 @@ export default class Landing extends Component<PropsType, State>{
                     shopData: data
                 });
                 console.log(this.state.shopData);
+                console.log('shops searched')
             })
     };
 
@@ -94,6 +88,11 @@ export default class Landing extends Component<PropsType, State>{
     render() {
         return (
             <div>
+            {/* <div className="h-100 row align-items-center"> */}
+                    {/* <div class="col" style="background:red">
+                      TEXT
+                     </div>
+                </div> */}
                 <div>
                     <h1>{this.props.title}</h1>
                 </div>
@@ -110,25 +109,29 @@ export default class Landing extends Component<PropsType, State>{
                     </Form>
                 </div>
                 <div>
-                    {this.state.itemData.length === 0
-                    ?
-                    <h4>we couldn't find anything for '{this.state.searchValue}'</h4>
-                    :
-                    <div>
-                    <h3>shops</h3>
-                    {/* map component to render our shops as card, limited to 3 */}
-                    {this.state.shopData.slice(0,3).map((potato) =>
-                    <ItemCardsSearch photo={potato.logo} name={potato.shopName} shop={potato.userID} />
-                    )}
-                    <h3>pieces</h3>
-                    {/* map component to render our pieces as cards, unlimited */}
-                    {this.state.itemData.map((potato) =>
-                    <ItemCardsSearch photo={potato.photo1} name={potato.itemName} shop={potato.userID} />
-                    )}
-                    </div>
-                }
+                    {this.state.itemData.length === 0 && this.state.shopData.length === 0
+                        ?
+                        <h4>we couldn't find anything for '{this.state.searchValue}'</h4>
+                        :
+                        <div>
+                            <h3>shops</h3>
+                            {/* map component to render our shops as card, limited to 3 */}
+                            <CardGroup className='card-group m-9 itemCardStyles'>
+                                {this.state.shopData.slice(0, 3).map((potato) =>
+                                    <ShopCardsSearch photo={potato.logo} name={potato.shopName} shop={potato.userID} />
+                                )}
+                            </CardGroup>
+                            <h3>pieces</h3>
+                            {/* map component to render our pieces as cards, unlimited */}
+                            <CardGroup className='card-group m-9 itemCardStyles'>
+                                {this.state.itemData.map((potato) =>
+                                    <ItemCardsSearch photo={potato.photo1} name={potato.itemName} shop={potato.userID} itemData={potato} />
+                                )}
+                            </CardGroup>
+                        </div>
+                    }
                 </div>
-                </div>
+            </div>
         )
     }
 };
