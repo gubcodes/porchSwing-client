@@ -246,6 +246,12 @@ nav .navbar-nav li a:hover{
     font-size: 1em;
     margin-top: -4px;
 }
+.bubbleNumbersLeft {
+    color: #264653;
+    font-size: 1em;
+    margin-top: -4px;
+    margin-right: -18px;
+}
 .numberBubblesEmpty {
     color: transparent;
     margin-right: -25px;

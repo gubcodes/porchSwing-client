@@ -223,7 +223,7 @@ export default class TitleBar extends React.Component<PropsType, State> {
                         ?
                         <div className='numberBubblesEmpty'><h5 className='bubbleNumbersEmpty'> </h5></div>
                         :
-                        <div className='numberBubbles'><h5 className='bubbleNumbers'>{this.state.unreadCount}</h5></div>
+                        <div className='numberBubblesLeft'><h5 className='bubbleNumbers'>{this.state.unreadCount}</h5></div>
                     }
                     {
                         localStorage.token 
