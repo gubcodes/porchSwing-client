@@ -228,7 +228,7 @@ export default class TitleBar extends React.Component<PropsType, State> {
                     {
                         localStorage.token 
                         ? 
-                        <NavLink className='speechAlignment' href='/profile'>
+                        <NavLink href='/profile'>
                         <NavbarText id='navbarText'><img className='iconSize pointer' src={speechBubble} /></NavbarText>
                         </NavLink>
                         :

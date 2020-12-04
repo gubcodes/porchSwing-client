@@ -226,9 +226,6 @@ nav .navbar-nav li a:hover{
     padding-left: 3px;
     font-size: 1em;
 }
-.speechAlignment {
-    padding-left: -18px;
-}
 .numberBubbles {
     color: #264653;
     margin-right: -25px;
@@ -246,7 +243,7 @@ nav .navbar-nav li a:hover{
 }
 .numberBubblesLeft {
     color: #264653;
-    margin-right: -25px;
+    margin-right: -42px;
     background-color: #E9C46A;
     border: 1px solid #E9C46A;
     border-radius: 50%;
@@ -258,7 +255,6 @@ nav .navbar-nav li a:hover{
     font-size: 1em;
     margin-top: -20px;
     z-index: 10;
-    margin-right: -18px;
 }
 .bubbleNumbers {
     color: #264653;
