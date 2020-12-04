@@ -6,7 +6,7 @@
 /* colors */
 /* red: #C44536 */
 /* yellow: #E9C46A */
-/* white: #FFFAF0 */
+/* white: white */
 /* dark red: #772E25 */
 /* black: #423838 */
 
@@ -58,16 +58,16 @@
 .iconSize {
     width: 32px;
     height: 32px;
-    fill: #FFFAF0;
+    fill: white;
     margin: 20px;
 }
 .iconSize g {
-    fill: #FFFAF0;
+    fill: white;
 }
 .magGlass {
     width: 32px;
     height: 32px;
-    fill: #FFFAF0;
+    fill: white;
     margin-left: -25px;
     margin-top: -14px;
     /* margin-left: 8px; */
@@ -117,7 +117,7 @@ h4 {
 }
 h3 {
     font-family: 'Beth Ellen';
-    color: #C38D9D;
+    color: #423838;
 }
 h2 {
     font-family: 'Roboto Slab';
@@ -170,11 +170,11 @@ ul{
     border-radius: 3px;
 }
 nav .navbar-nav li a{
-    color: #FFFAF0 !important;
+    color: white !important;
     transition: 200ms;
     }
 nav .navbar-nav li a:hover{
-    color: #FFFAF0 !important;
+    color: white !important;
     letter-spacing: .07em;
     transition: 200ms;
     }
@@ -203,18 +203,18 @@ nav .navbar-nav li a:hover{
     transition: 200ms;
 }
 .modalBar {
-    background-color: #C44536;
+    background-color: #264653;
 }
 #navbarText {
-    color: #FFFAF0;
+    color: white;
     margin-top: -8px;
 }
 #navbarText a {
     color: #264653;
     margin-right: -25px;
     /* padding-bottom: 10px; */
-    background-color: #FFFAF0;
-    border: 1px solid #FFFAF0;
+    background-color: white;
+    border: 1px solid white;
     border-radius: 50%;
     text-align: center;
     font-family: 'Roboto Slab';
@@ -302,7 +302,7 @@ nav .navbar-nav li a:hover{
     max-width: 20%;
 }
 .card-body {
-    background-color: #FFFAF0;
+    background-color: transparent;
 }
 .card {
     border: none!important;
@@ -313,8 +313,12 @@ nav .navbar-nav li a:hover{
 }
 /* modals */
 .modalHeader {
-    background-color: #C44536;
-    color: #FFFAF0;
+    background-color: #264653;
+    color: white;
+    font-family: 'Roboto Slab';
+}
+.modalHeader > h2 {
+    color: white;
     font-family: 'Roboto Slab';
 }
 .modal-header .close {
@@ -325,7 +329,7 @@ nav .navbar-nav li a:hover{
     opacity: 100%;
 }
 .modal-body {
-    background-color: #FFFAF0;
+    background-color: white;
  }
 
  /* logo images */

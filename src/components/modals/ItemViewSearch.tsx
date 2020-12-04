@@ -127,7 +127,7 @@ slides = this.items.map((item) => {
         return (
             <div>
                 <ModalHeader className='modalHeader' toggle={this.props.toggle}>
-                    {this.props.itemData.itemName}
+                    <h2>{this.props.itemData.itemName}</h2>
                 </ModalHeader>
                 <ModalBody>
                     {
