@@ -100,7 +100,7 @@ previous = () => {
     })
   }
 
-goToIndex = (newIndex) => {
+goToIndex = (newIndex: any) => {
     if (this.state.animating) return;
     this.setState({
         activeIndex: newIndex
