@@ -317,7 +317,7 @@ nav .navbar-nav li a:hover{
     color: white;
     font-family: 'Roboto Slab';
 }
-.modalHeader > h2 {
+.modalHeaderText {
     color: white;
     font-family: 'Roboto Slab';
 }
