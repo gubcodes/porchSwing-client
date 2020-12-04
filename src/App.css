@@ -226,6 +226,9 @@ nav .navbar-nav li a:hover{
     padding-left: 3px;
     font-size: 1em;
 }
+.speechAlignment {
+    padding-left: -18px;
+}
 .numberBubbles {
     color: #264653;
     margin-right: -25px;
