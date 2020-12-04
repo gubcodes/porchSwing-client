@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ModalBody, ModalHeader, Modal, Button, Carousel, CarouselIndicators, CarouselCaption, CarouselControl, CarouselItem } from 'reactstrap';
+import { ModalBody, ModalHeader, Modal, Button, Carousel, CarouselIndicators, CarouselCaption, CarouselControl, CarouselItem, Col, Row } from 'reactstrap';
 import ItemAddImage from './ItemAddImage';
 
 type PropsType = {
@@ -151,8 +151,14 @@ slides = this.items.map((item) => {
                         </div>
                     <p>{this.props.itemData.itemDescription}</p>
                     <h4>${this.props.itemData.price}</h4>
+                    <Row>
+                        <Col>
                     <button onClick={this.addItemToCart} className='button'>add to bag</button>
+                    </Col>
+                    <Col>
                     <button className='button'><a href={`/storefront/${this.props.shopID}`}>visit shop</a></button>
+                    </Col>
+                    </Row>
                     </div>
                     }
                 </ModalBody>
