@@ -11,7 +11,7 @@ import {
     Button,
     Form, FormGroup, Modal, ModalHeader, ModalBody, CardDeck
   } from "reactstrap";
-import ItemViewSearch from '../modals/ItemViewSearch';
+import ItemViewStoreFront from '../modals/ItemViewStoreFront';
 
 type PropsType = {
     photo: string,
@@ -25,7 +25,7 @@ type State = {
     isOpenItemViewSearch: boolean
 }
 
-export default class ItemCardsSearch extends Component<PropsType, State>{
+export default class ItemCardsStoreFront extends Component<PropsType, State>{
     constructor(props: PropsType){
         super(props);
         this.toggleItemViewSearch = this.toggleItemViewSearch.bind(this);
@@ -53,7 +53,7 @@ export default class ItemCardsSearch extends Component<PropsType, State>{
                             {/* <a href="#" onClick={this.toggleItemViewSearch} className='stretched-link'></a> */}
                         </CardBody>
                         <Modal isOpen={this.state.isOpenItemViewSearch} toggle={this.toggleItemViewSearch}>
-                            <ItemViewSearch itemData={this.props.itemData} shopID={this.props.shop} toggle={this.toggleItemViewSearch} getShoppingBag={this.props.getShoppingBag}/>
+                            <ItemViewStoreFront itemData={this.props.itemData} shopID={this.props.shop} toggle={this.toggleItemViewSearch} getShoppingBag={this.props.getShoppingBag}/>
                         </Modal>
                     </Card>
                 </CardGroup>

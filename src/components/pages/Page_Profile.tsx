@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Inbox from '../rendering/Inbox';
 import Outbox from '../rendering/Outbox';
 import SendMessage from '../modals/SendMessage';
-import { Table, Modal } from 'reactstrap';
+import { Table, Modal, Container, Row, Col } from 'reactstrap';
 
 type PropsType = {
     title: string;
@@ -121,9 +121,12 @@ export default class Profile extends Component<PropsType, State>{
 
     render() {
         return (
-            <div>
-                <h1>{this.props.title}</h1>
+            <Container className="ml-auto mr-auto">
+                <div className='centerText'>
                 <h3>welcome back, {this.state.userName}!</h3>
+                </div>
+                <Row>
+                    <Col>
                 {
                     this.state.renderInbox === true
                         ?
@@ -135,6 +138,8 @@ export default class Profile extends Component<PropsType, State>{
                             <button className='button' id='buttonHover' type='button' onClick={this.toggleInboxRender}>received</button>
                         </div>
                 }
+                </Col>
+                <Col>
                 {
                     this.state.renderInbox === false
                         ?
@@ -146,6 +151,8 @@ export default class Profile extends Component<PropsType, State>{
                             <button className='button' id='buttonHover' type='button' onClick={this.toggleInboxRender}>sent</button>
                         </div>
                 }
+                </Col>
+                </Row>
                 {
                     this.state.renderInbox
                         ?
@@ -153,8 +160,8 @@ export default class Profile extends Component<PropsType, State>{
                             <Table className='table' size='sm'>
                                 <thead>
                                     <tr>
-                                        <th>from</th>
-                                        <th>subject</th>
+                                        <th className='width20'>from</th>
+                                        <th className='width30'>subject</th>
                                         <th>message</th>
                                     </tr>
                                 </thead>
@@ -170,8 +177,8 @@ export default class Profile extends Component<PropsType, State>{
                             <Table className='table' size='sm'>
                                 <thead>
                                     <tr>
-                                        <th>to</th>
-                                        <th>subject</th>
+                                        <th className='width20'>to</th>
+                                        <th className='width30'>subject</th>
                                         <th>message</th>
                                     </tr>
                                 </thead>
@@ -186,7 +193,7 @@ export default class Profile extends Component<PropsType, State>{
                 {/* <Modal isOpen={this.state.isOpenSendMessage}>
                     <SendMessage shopName={this.state.receiverFirstName} shop={this.state.receiverID} toggle={this.toggleSendMessage} senderUserName={this.state.userName} />
                 </Modal> */}
-            </div>
+            </Container>
         )
     }
 };

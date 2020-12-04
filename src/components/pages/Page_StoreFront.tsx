@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
-import { Modal } from 'reactstrap';
-import ItemCardsSearch from '../rendering/ItemCardsSearch';
+import React, { Component, Fragment } from 'react';
+import { Modal, CardGroup, Container, Row, Col,  } from 'reactstrap';
+import ItemCardsStoreFront from '../rendering/ItemCardsStoreFront';
 import SendMessage from '../modals/SendMessage';
 import transparent_logo from '../../assets/images/transparent_logo.png';
 
 type PropsType = {
     title: string,
-    senderUserName: string
+    senderUserName: string,
+    getShoppingBag: () => void;
 }
 
 type State = {
@@ -21,7 +22,7 @@ type State = {
 }
 
 class StoreFront extends Component<PropsType, State>{
-    constructor(props: PropsType){
+    constructor(props: PropsType) {
         super(props);
         this.searchShops = this.searchShops.bind(this);
         this.searchItems = this.searchItems.bind(this);
@@ -52,7 +53,7 @@ class StoreFront extends Component<PropsType, State>{
     }
 
     searchShops = () => {
-        let id = window.location.pathname.replace('/storefront/','');
+        let id = window.location.pathname.replace('/storefront/', '');
         fetch(`https://porchswing-server.herokuapp.com/shop/${id}`, {
             method: 'GET',
             headers: new Headers({
@@ -74,7 +75,7 @@ class StoreFront extends Component<PropsType, State>{
     };
 
     searchItems = () => {
-        let id = window.location.pathname.replace('/storefront/','');
+        let id = window.location.pathname.replace('/storefront/', '');
         fetch(`https://porchswing-server.herokuapp.com/item/all/${id}`, {
             method: 'GET',
             headers: new Headers({
@@ -110,32 +111,53 @@ class StoreFront extends Component<PropsType, State>{
     };
 
     render() {
-        return(
+        return (
             <div>
-            <h1>{this.props.title}</h1>
-            <div>
-                    {this.state.shopData.shopName === null
-                    ?
-                    <></>
-                    :
-                    <div>
-                        {/* <img src={this.state.shopLogo || filler_logo} alt='item-image' /> */}
-                    <img className='logoWidth' src={this.state.logo} />
-                    <h1>{this.state.shopName}</h1>
-                    <h4>{this.state.shopDescription}</h4>
-                    <button onClick={this.toggleSendMessage}>contact this shop</button>
-                    <Modal isOpen={this.state.isOpenSendMessage}>
-                        <SendMessage shopName={this.state.shopName} shop={this.state.shop} toggle={this.toggleSendMessage} senderUserName={this.state.userName} />
-                    </Modal>
-                    <h3>pieces currently available from {this.state.shopName}</h3>
-                    {/* map component to render our pieces as cards, unlimited */}
-                    {this.state.itemData.map((potato) =>
-                    <ItemCardsSearch photo={potato.photo1} name={potato.itemName} shop={potato.userID} />
-                    )}
-                    </div>
-                }
+                {/* <h1>{this.props.title}</h1> */}
+                <div>
+                    <br/>
+                    <Container className="ml-auto mr-auto">
+                            {this.state.shopData.shopName === null
+                                ?
+                                <></>
+                                :
+                                <Fragment>
+                                <Row>
+                                    <Col>
+                                    {/* <img src={this.state.shopLogo || filler_logo} alt='item-image' /> */}
+                                    <img className='logoWidth' src={this.state.logo} />
+                                    </Col>
+                                    <Col>
+                                    <h1>{this.state.shopName}</h1>
+                                    <h4>{this.state.shopDescription}</h4>
+                                    <button className='button' onClick={this.toggleSendMessage}>contact this shop</button>
+                                    </Col>
+                                    </Row>
+                                    <Modal isOpen={this.state.isOpenSendMessage}>
+                                        <SendMessage shopName={this.state.shopName} shop={this.state.shop} toggle={this.toggleSendMessage} senderUserName={this.state.userName} />
+                                    </Modal>
+                                    
+                                    <Row>
+                                        <Col>
+                                        <br/>
+                                    <h2 className='centerText'>pieces currently available from {this.state.shopName}</h2>
+                                    </Col>
+                                    </Row>
+                                    {/* map component to render our pieces as cards, unlimited */}
+                                    <Container className="ml-auto mr-auto">
+                                    <Row className="ml-auto mr-auto">
+                                    {/* <CardGroup className='card-group m-9 itemCardStyles'> */}
+                                        {this.state.itemData.map((potato) =>
+                                            <ItemCardsStoreFront photo={potato.photo1} name={potato.itemName} shop={potato.userID} itemData={potato} getShoppingBag={this.props.getShoppingBag}/>
+                                        )}
+                                    {/* </CardGroup> */}
+                                </Row>
+                                    </Container>
+                                </Fragment>
+                            }
+                </Container>
                 </div>
-            </div>
+                </div>
         )
     }
 }

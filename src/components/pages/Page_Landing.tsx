@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Label, Input, Button, CardGroup } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Button, CardGroup, Container, Row, Col } from 'reactstrap';
 import ItemCardsSearch from '../rendering/ItemCardsSearch';
 import ShopCardsSearch from '../rendering/ShopCardsSearch';
+import Search from '../../assets/images/search.png';
+import LineRed from '../../assets/images/lineFillBlack.png';
 
 type PropsType = {
-    title: string
+    title: string,
+    getShoppingBag: () => void;
 }
 
 type State = {
@@ -93,41 +96,72 @@ export default class Landing extends Component<PropsType, State>{
                       TEXT
                      </div>
                 </div> */}
-                <div>
-                    <h1>{this.props.title}</h1>
-                </div>
-                <div>
+                <br/>
+                <Container id='top' className="ml-auto mr-auto">
                     <Form onSubmit={this.handleSubmit}>
-                        {/* shop name */}
+                <Row className='justify-content-center'>
+                        <Col>
+                        {/* <img className='magGlass' src={Search} /> */}
+                        </Col>
+                            <Col>
                         <FormGroup>
                             <Input onChange={(e: any) => this.setState({ searchValue: e.target.value })} name='shop name' value={this.state.searchValue} />
                             {/* <Label htmlFor='shop name'>shop name</Label> */}
                         </FormGroup>
+                        </Col>
+                        <Col>
                         <FormGroup>
-                            <button className='button' id='buttonhover' type='submit'>search</button>
+                            
+                            <button className='button' id='buttonhover' type='submit'><img className='magGlass' src={Search} /></button>
                         </FormGroup>
+                        </Col>
+                    </Row>
                     </Form>
-                </div>
+                    </Container>
                 <div>
                     {this.state.itemData.length === 0 && this.state.shopData.length === 0
                         ?
+                        <div className='centerText'>
                         <h4>we couldn't find anything for '{this.state.searchValue}'</h4>
+                        </div>
                         :
                         <div>
-                            <h3>shops</h3>
+                            <Container className="ml-auto mr-auto">
+                            <Row>
+                                <Col xs="2">
+                            <h3 className='paddingLeft'>shops</h3>
+                            </Col>
+                            <Col>
+                            <img className='lines alignLeft' src={LineRed} />
+                            </Col>
+                            </Row>
+                            </Container>
                             {/* map component to render our shops as card, limited to 3 */}
-                            <CardGroup className='card-group m-9 itemCardStyles'>
+                            <Container className="ml-auto mr-auto">
+                                    <Row className="ml-auto mr-auto">
                                 {this.state.shopData.slice(0, 3).map((potato) =>
                                     <ShopCardsSearch photo={potato.logo} name={potato.shopName} shop={potato.userID} />
                                 )}
-                            </CardGroup>
-                            <h3>pieces</h3>
+                            </Row>
+                            </Container>
+                            <Container className="ml-auto mr-auto">
+                            <Row>
+                                <Col xs="2">
+                            <h3 className='paddingLeft'>pieces</h3>
+                            </Col>
+                            <Col>
+                            <img className='lines alignLeft' src={LineRed} />
+                            </Col>
+                            </Row>
+                            </Container>
                             {/* map component to render our pieces as cards, unlimited */}
-                            <CardGroup className='card-group m-9 itemCardStyles'>
+                            <Container className="ml-auto mr-auto">
+                                    <Row className="ml-auto mr-auto">
                                 {this.state.itemData.map((potato) =>
-                                    <ItemCardsSearch photo={potato.photo1} name={potato.itemName} shop={potato.userID} itemData={potato} />
+                                    <ItemCardsSearch photo={potato.photo1} name={potato.itemName} shop={potato.userID} itemData={potato} getShoppingBag={this.props.getShoppingBag}/>  
                                 )}
-                            </CardGroup>
+                            </Row>
+                            </Container>
                         </div>
                     }
                 </div>

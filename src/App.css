@@ -8,12 +8,71 @@
 /* yellow: #E9C46A */
 /* white: #FFFAF0 */
 /* dark red: #772E25 */
+/* black: #423838 */
 
 .App {
-    background-color: #FFFAF0;
+    background-color: #ffffff;
     min-height: 100vh;
 }
-
+.pointer {
+    cursor: pointer;
+}
+/* blanket alignments */
+.centerText {
+    text-align: center;
+}
+.alignRight {
+    text-align: right;
+}
+.alignLeft {
+    text-align: left;
+}
+.paddingLeft {
+    padding-left: 45px;
+}
+.width20 {
+    width: 20%;
+}
+.width30 {
+    width: 30%;
+}
+.width50 {
+    width: 50%;
+}
+/* line dividers */
+.lines {
+    width: 100%;
+    max-height: 15px;
+    padding-top: 5px;
+    margin-bottom: -10px;
+    padding-right: 60px;
+}
+.linesOffice {
+    width: 100%;
+    max-height: 15px;
+    padding-top: 5px;
+    margin-bottom: -10px;
+    /* padding-right: 60px; */
+}
+/* icons */
+.iconSize {
+    width: 32px;
+    height: 32px;
+    fill: #FFFAF0;
+    margin: 20px;
+}
+.iconSize g {
+    fill: #FFFAF0;
+}
+.magGlass {
+    width: 32px;
+    height: 32px;
+    fill: #FFFAF0;
+    margin-left: -25px;
+    margin-top: -14px;
+    /* margin-left: 8px; */
+}
+/* buttons */
 .button {
     background-color: transparent;
     font-family: 'Beth Ellen';
@@ -43,29 +102,39 @@
 .uploadFileButton {
     font-family: 'Roboto Slab'
 }
-.centerText {
-    text-align: center;
-}
+/* text styling */
 p {
     font-family: 'Roboto Slab';
+    color: #423838;
 }
 h5 {
     font-family: 'Roboto Slab';
+    color: #423838;
 }
 h4 {
     font-family: 'Roboto Slab';
+    color: #423838;
 }
 h3 {
-    font-family: 'Roboto Slab';
+    font-family: 'Beth Ellen';
+    color: #C38D9D;
 }
 h2 {
     font-family: 'Roboto Slab';
+    color: #423838;
 }
 h1 {
     font-family: 'Roboto Slab';
+    color: #423838;
 }
+.redText {
+    color: #C44536
+}
+
+/* modal form */
 Label {
     font-family: 'Roboto Slab';
+    color: #423838;
 }
 .x-button {
     max-width: 30px;
@@ -95,7 +164,7 @@ ul{
     top: 70px;
     padding-bottom: 20px;
     text-align: right;
-    background-color: #C44536;
+    background-color: #264653;
     font-size: 1.2em;
     width: 240px;
     border-radius: 3px;
@@ -110,15 +179,91 @@ nav .navbar-nav li a:hover{
     transition: 200ms;
     }
 #Navbar {
-    background-color: #C44536;
+    background-color: #264653;
     font-family: 'Beth Ellen';
+    text-decoration: none;
+    z-index: 100;
 }
+.navbar {
+    max-height: 90px;
+  }
 #NavbarBrand {
-    color: #FFFAF0;
+    color: #E9C46A;
     font-size: 2em;
+    margin-top: -20px;
+    transition: 200ms;
+    letter-spacing: .03em;
+}
+#NavbarBrand:hover {
+    letter-spacing: .07em;
+    transition: 200ms;
+}
+#NavbarBrand:hover {
+    letter-spacing: .07em;
+    transition: 200ms;
 }
 .modalBar {
     background-color: #C44536;
+}
+#navbarText {
+    color: #FFFAF0;
+    margin-top: -8px;
+}
+#navbarText a {
+    color: #264653;
+    margin-right: -25px;
+    /* padding-bottom: 10px; */
+    background-color: #FFFAF0;
+    border: 1px solid #FFFAF0;
+    border-radius: 50%;
+    text-align: center;
+    font-family: 'Roboto Slab';
+    /* width: 10px; */
+    /* height: 3px; */
+    padding: 0px;
+    padding-bottom: 0px;
+    padding-right: 3px;
+    padding-left: 3px;
+    font-size: 1em;
+}
+.numberBubbles {
+    color: #264653;
+    margin-right: -25px;
+    background-color: #E9C46A;
+    border: 1px solid #E9C46A;
+    border-radius: 50%;
+    text-align: center;
+    font-family: 'Roboto Slab';
+    width: 18px;
+    height: 18px;
+    padding: 3px;
+    font-size: 1em;
+    margin-top: -20px;
+    z-index: 10;
+}
+.bubbleNumbers {
+    color: #264653;
+    font-size: 1em;
+    margin-top: -4px;
+}
+.numberBubblesEmpty {
+    color: transparent;
+    margin-right: -25px;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 50%;
+    text-align: center;
+    font-family: 'Roboto Slab';
+    width: 18px;
+    height: 18px;
+    padding: 3px;
+    font-size: 1em;
+    margin-top: -20px;
+}
+.bubbleNumbersEmpty {
+    color: transparent;
+    font-size: 1em;
+    margin-top: -4px;
 }
 /* // this is a black icon with 50% opacity */
 .navbar-light .navbar-toggler-icon {
@@ -147,6 +292,9 @@ nav .navbar-nav li a:hover{
     border: none!important;
     outline: none;
 }
+.testLayout {
+    border-style: dotted;
+}
 /* modals */
 .modalHeader {
     background-color: #C44536;
@@ -166,7 +314,7 @@ nav .navbar-nav li a:hover{
 
  /* logo images */
  .logoWidth {
-     max-width: 500px;
+     max-width: 400px;
  }
  .logoWidthUpload {
      max-width: 400px;
@@ -176,3 +324,12 @@ nav .navbar-nav li a:hover{
  .itemWidth {
      max-width: 150px;
  }
+ .itemViewWidth {
+     max-width: 400px;
+ }
+ .shoppingBagImage {
+     max-width: 50px;
+ }
+ .carousel-item > img { 
+    width: 100%; 
+  }

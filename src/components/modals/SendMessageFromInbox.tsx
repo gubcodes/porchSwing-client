@@ -12,7 +12,7 @@ type PropsType = {
     message: string;
     fetchInbox: () => void;
     fetchOutbox: () => void;
-    sentTime: Date;
+    sentTime: string;
 }
 
 type State = {
@@ -80,15 +80,14 @@ export default class SendMessageFromInbox extends Component<PropsType, State>{
         ).then((data) => {
             console.log(data)
             console.log('message marked as read:true')
-            //TODO: add inbox rerender here
-            {this.props.fetchInbox()} //not working (i think it is the href='#' maybe?)
+            this.props.fetchInbox();
         });
     }
 
     componentDidMount() {
         this.updateRead();
     }
-
+    // sent = {`${new Date(Date.parse(this.props.sentTime).toDateString()}`}
     render() {
         return (
             <div>
@@ -103,7 +102,7 @@ export default class SendMessageFromInbox extends Component<PropsType, State>{
                 {/* <h4>from: {this.props.receiverFirstName}</h4> */}
                     <h5>subject: {this.props.subject}</h5>
                     <p>{this.props.message.substring(0, this.props.message.indexOf(`----------`))}</p>
-                    <p>{this.props.sentTime}</p>
+            <span>sent: {new Date(Date.parse(this.props.sentTime)).toDateString()}</span>
                     <hr/>
                     <Form onSubmit={this.handleSubmit}>
                         <h5>responding to: {this.props.receiverFirstName}</h5>

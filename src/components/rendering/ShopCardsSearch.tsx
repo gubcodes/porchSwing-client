@@ -41,26 +41,15 @@ export default class ItemCardsSearch extends Component<PropsType, State>{
 
     render() {
         return(
-            <div>
-            {/* <Col className='col-12'> */}
-                {/* <CardGroup className='card-group m-3'> */}
+            <Col className='col-4'>
                     <Card className='card overflow-auto'>
                         <CardBody>
-                        <CardImg src={this.props.photo} alt='item-img' />
-                        <p>{this.props.name}</p>
-                                {/* <Button onClick={this.toggleItemViewSearch}>{this.props.name}</Button> */}
+                            <CardImg src={this.props.photo} alt='item-img' />
+                            <p>{this.props.name}</p>
                             <a href={`/storefront/${this.props.shop}`} className='stretched-link'></a>
-                            {/* the above link will sort of get moved to ItemViewSearch */}
-                            {/* add stretched link that opens ItemViewSearch */}
-                            {/* <a href="#" onClick={this.toggleItemViewSearch} className='stretched-link'></a> */}
                         </CardBody>
-                        {/* <Modal isOpen={this.state.isOpenItemViewSearch} toggle={this.toggleItemViewSearch}>
-                            <ItemViewSearch itemData={this.props.itemData} shopID={this.props.shop} toggle={this.toggleItemViewSearch}/>
-                        </Modal> */}
                     </Card>
-                {/* </CardGroup> */}
-            {/* </Col> */}
-            </div>
+            </Col>
         )
     }
 };

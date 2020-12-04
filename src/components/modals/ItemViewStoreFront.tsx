@@ -56,7 +56,8 @@ export default class ItemViewSearch extends Component<PropsType, State>{
     }
 
     //carousel:
-    items = 
+
+items = 
     (this.props.itemData.photo2 === '' || this.props.itemData.photo3 === ''
         ?
         [
@@ -81,7 +82,7 @@ export default class ItemViewSearch extends Component<PropsType, State>{
             }
         ]
         )
-        
+
 next = () => {
     if (this.state.animating) return;
     const nextIndex = this.state.activeIndex === this.items.length - 1 ? 0 : this.state.activeIndex + 1;
@@ -152,9 +153,9 @@ slides = this.items.map((item) => {
                     <p>{this.props.itemData.itemDescription}</p>
                     <h4>${this.props.itemData.price}</h4>
                     <button onClick={this.addItemToCart} className='button'>add to bag</button>
-                    <button className='button'><a href={`/storefront/${this.props.shopID}`}>visit shop</a></button>
+                    {/* <button className='button'><a href={`/storefront/${this.props.shopID}`}>visit shop</a></button> */}
                     </div>
-                    }
+    }
                 </ModalBody>
             </div>
         )

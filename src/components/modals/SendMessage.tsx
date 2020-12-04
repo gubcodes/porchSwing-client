@@ -28,7 +28,7 @@ export default class SendMessage extends Component<PropsType, State>{
         console.log(this.props.shop);
         console.log(this.props.senderUserName);
         let subjectData = this.state.subjectData;
-        let body = this.state.body;
+        let body = this.state.body + '\n----------';
         let receiverUserID = this.props.shop;
         let senderUserName = this.props.senderUserName;
         let receiverUserName = this.props.shopName;

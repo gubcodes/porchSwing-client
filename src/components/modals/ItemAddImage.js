@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Form, FormGroup, Modal, ModalBody, Label, Input, Button, ModalHeader } from 'reactstrap';
+import { Form, FormGroup, Modal, ModalBody, Label, Input, Button, ModalHeader, Row, Col, Carousel, CarouselItem, CarouselControl, CarouselIndicators, CarouselCaption } from 'reactstrap';
 import { storage } from '../../assets/firebase';
 import filler_item from '../../assets/images/filler_item.png';
 import cancel from '../../assets/images/cancel.png';
+
 
 const ItemAddImage = (props) => {
     const [itemName, setItemName] = useState('');
@@ -16,6 +17,11 @@ const ItemAddImage = (props) => {
     // const [itemAddModal, setItemAddModal] = useState(false);
     const [image, setImage] = useState(null);
     const [url, setUrl] = useState('');
+    const [url2, setUrl2] = useState('');
+    const [url3, setUrl3] = useState('');
+    // carousel:
+    const [activeIndex, setActiveIndex] = useState(0);
+    const [animating, setAnimating] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -42,6 +48,7 @@ const ItemAddImage = (props) => {
             (response) => response.json()
         ).then((data) => {
             console.log(data)
+            props.getItems();
         })
     };
 
@@ -51,6 +58,16 @@ const ItemAddImage = (props) => {
 
     //firebase image upload:
     const handleChange = (e) => {
+        if (e.target.files[0]) {
+            setImage(e.target.files[0])
+        }
+    };
+    const handleChange2 = (e) => {
+        if (e.target.files[0]) {
+            setImage(e.target.files[0])
+        }
+    };
+    const handleChange3 = (e) => {
         if (e.target.files[0]) {
             setImage(e.target.files[0])
         }
@@ -87,6 +104,101 @@ const ItemAddImage = (props) => {
             }
         );
     };
+    const handleUpload2 = () => {
+        const uploadTask = storage.ref(`images/${milliseconds}${image.name}`).put(image);
+        uploadTask.on(
+            'state_changed',
+            shapshot => {
+                // const progress = Math.round(
+                //     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                // );
+                // setProgress(progress);
+            },
+            error => {
+                console.log(error);
+            },
+            () => {
+                storage
+                    .ref('images')
+                    .child(`${milliseconds}${image.name}`)
+                    .getDownloadURL()
+                    .then(url => {
+                        // console.log(url);
+                        setUrl2(url);
+                        setPhoto2(url);
+                    });
+            }
+        );
+    };
+    const handleUpload3 = () => {
+        const uploadTask = storage.ref(`images/${milliseconds}${image.name}`).put(image);
+        uploadTask.on(
+            'state_changed',
+            shapshot => {
+                // const progress = Math.round(
+                //     (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+                // );
+                // setProgress(progress);
+            },
+            error => {
+                console.log(error);
+            },
+            () => {
+                storage
+                    .ref('images')
+                    .child(`${milliseconds}${image.name}`)
+                    .getDownloadURL()
+                    .then(url => {
+                        // console.log(url);
+                        setUrl3(url);
+                        setPhoto3(url);
+                    });
+            }
+        );
+    };
+
+    //carousel:
+    const items = [
+        {
+            src: url
+        }, 
+        {
+            src: url2
+        }, 
+        {
+            src: url3
+        }
+    ]
+
+    const next = () => {
+        if (animating) return;
+        const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+        setActiveIndex(nextIndex);
+      }
+    
+      const previous = () => {
+        if (animating) return;
+        const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+        setActiveIndex(nextIndex);
+      }
+    
+      const goToIndex = (newIndex) => {
+        if (animating) return;
+        setActiveIndex(newIndex);
+      }
+
+      const slides = items.map((item) => {
+        return (
+          <CarouselItem
+            onExiting={() => setAnimating(true)}
+            onExited={() => setAnimating(false)}
+            key={item.src}
+          >
+            <img src={item.src} alt={item.altText} />
+            <CarouselCaption captionText={item.caption} captionHeader={item.caption} />
+          </CarouselItem>
+        );
+      });
 
     return (
         <div>
@@ -129,11 +241,45 @@ const ItemAddImage = (props) => {
                     <div className='centerText'>
                         {/* <progress value={progress} max='100' /> */}
                         <br />
+                        <h5>upload up to 3 images</h5>
                         <input className='uploadFileButton' type='file' onChange={handleChange} />
                         <br />
                         <button className='button' type='button' onClick={handleUpload}>upload</button>
                         <br />
-                        <img className='itemWidth'src={url || filler_item} alt='item-image' />
+                        <br />
+                        <input className='uploadFileButton' type='file' onChange={handleChange2} />
+                        <br />
+                        <button className='button' type='button' onClick={handleUpload2}>upload</button>
+                        <br />
+                        <br />
+                        <input className='uploadFileButton' type='file' onChange={handleChange3} />
+                        <br />
+                        <button className='button' type='button' onClick={handleUpload3}>upload</button>
+                        <br />
+                        {/* <Row>
+                            <Col>
+                                <img className='itemWidth'src={url || filler_item} alt='item-image' />
+                            </Col>
+                            <Col>
+                                <img className='itemWidth'src={url2 || filler_item} alt='item-image' />
+                            </Col>
+                            <Col>
+                                <img className='itemWidth'src={url3 || filler_item} alt='item-image' />
+                            </Col>
+                        </Row> */}
+                        <div>
+                            {/* let's try the carousel here */}
+                            <Carousel className='carouselSize'
+                            activeIndex={activeIndex}
+                            next={next}
+                            previous={previous}
+                            >
+                            <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
+                            {slides}
+                            <CarouselControl direction="prev" directionText="Previous" onClickHandler={previous} />
+                            <CarouselControl direction="next" directionText="Next" onClickHandler={next} />
+                            </Carousel>
+                        </div>
                     </div>
                     {/* button sends fetch and closes modal */}
                     <FormGroup>

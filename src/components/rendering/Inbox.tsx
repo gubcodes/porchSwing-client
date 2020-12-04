@@ -42,14 +42,15 @@ export default class Inbox extends Component<PropsType, State>{
                 {
                     this.props.subject.length > 20
                     ?
-                    <td>{this.props.subject.slice(0,20)}...</td>
+                    <td>{this.props.subject.slice(0,20)}. . .</td>
                     :
                     <td>{this.props.subject}</td>
                 }
                 {
                     this.props.message.length > 30
                     ?
-                    <td><a className='messageLink' href='#'>{this.props.message.slice(0,30)}...</a></td>
+                    <td><a className='messageLink' href='#'>{this.props.message.substring(0, this.props.message.indexOf(`----------`)).slice(0,40)}. . .</a></td>
+                    // <td><a className='messageLink' href='#'>{this.props.message.slice(0,40)}...</a></td>
                     :
                     <td><a className='messageLink' href='#'>{this.props.message}</a></td>
                 }
