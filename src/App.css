@@ -18,8 +18,11 @@
     cursor: pointer;
 }
 /* responsiveness */
-
-
+@media only screen and (max-width: 700px) {
+    #NavbarBrand {
+        font-size: x-small;
+    }
+}
 /* blanket alignments */
 .centerText {
     text-align: center;
