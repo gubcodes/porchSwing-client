@@ -17,6 +17,12 @@
 .pointer {
     cursor: pointer;
 }
+/* responsiveness */
+@media screen and (max-width: 768px) {
+    .NavbarBrand {
+       width: 200px;
+    }
+ }
 /* blanket alignments */
 .centerText {
     text-align: center;
