@@ -216,7 +216,7 @@ export default class TitleBar extends React.Component<PropsType, State> {
         return (
             <div>
                 <Navbar id='Navbar' light>
-                    <NavbarBrand id='NavbarBrand' href="/" className="mr-auto NavbarBrandSize">porchSwing</NavbarBrand>
+                    <NavbarBrand id='NavbarBrand' href="/" className="mr-auto">porchSwing</NavbarBrand>
                     {/* nav icons */}
                     {
                         this.state.unreadCount === 0

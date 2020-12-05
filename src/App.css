@@ -18,11 +18,8 @@
     cursor: pointer;
 }
 /* responsiveness */
-@media screen and (max-width: 767px) {
-    .NavbarBrandSize {
-       max-width: 200px;
-    }
- }
+
+
 /* blanket alignments */
 .centerText {
     text-align: center;
@@ -199,6 +196,7 @@ nav .navbar-nav li a:hover{
     margin-top: -20px;
     transition: 200ms;
     letter-spacing: .03em;
+    max-width: 40vw;
 }
 #NavbarBrand:hover {
     letter-spacing: .07em;
