@@ -152,10 +152,10 @@ slides = this.items.map((item) => {
                     <p>{this.props.itemData.itemDescription}</p>
                     <h4>${this.props.itemData.price}</h4>
                     <Row>
-                        <Col>
+                        <Col className='centerText'>
                     <button onClick={this.addItemToCart} className='button centerText'>add to bag</button>
                     </Col>
-                    <Col>
+                    <Col className='centerText'>
                     <button className='button centerText'><a href={`/storefront/${this.props.shopID}`}>visit shop</a></button>
                     </Col>
                     </Row>
