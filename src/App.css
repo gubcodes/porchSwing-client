@@ -18,8 +18,8 @@
     cursor: pointer;
 }
 /* responsiveness */
-@media screen and (max-width: 768px) {
-    #NavbarBrand {
+@media screen and (max-width: 767px) {
+    #NavbarBrandSize {
        max-width: 200px;
     }
  }
