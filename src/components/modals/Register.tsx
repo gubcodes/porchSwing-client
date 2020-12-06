@@ -74,10 +74,12 @@ export default class Register extends React.Component<PropsType, State> {
             this.props.updateToken(data.sessionToken);
             this.props.updateShopOwner(data.user.shopOwner);
             this.props.changeUserName(data.user.firstName);
+            this.props.toggle();
             //add function from titlebar that stores username in variable
         })
     } catch (error) {
         alert(error);
+        console.log(error);
     }
     };
 
@@ -122,7 +124,8 @@ export default class Register extends React.Component<PropsType, State> {
                                 <Input onChange={(e: any) => this.setState({confirmPassword: e.target.value})} name='confirm password' type='password' value={this.state.confirmPassword} />
                             </FormGroup>
                             <FormGroup>
-                                <Button id='buttonHover' type='submit'  onClick={this.props.toggle}>sign up</Button>
+                                {/* <Button id='buttonHover' type='submit'  onClick={this.props.toggle}>sign up</Button> */}
+                                <Button id='buttonHover' type='submit'>sign up</Button>
                             </FormGroup>
                         </Form>
                     </ModalBody>
