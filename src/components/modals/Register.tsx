@@ -42,8 +42,16 @@ export default class Register extends React.Component<PropsType, State> {
         let email = this.state.email;
         let password = this.state.password;
         let shopOwner = this.state.shopOwner;
+        let confirmEmail = this.state.confirmEmail;
+        let confirmPassword = this.state.confirmPassword;
 
         //add try + if statements here to validate email + password 
+        try {
+            if (!email || !password || !firstName) throw 'first name, email, and password required';
+            if (this.state.password.length < 8) throw 'password must more than 8 characters in length';
+            if (email !== confirmEmail) throw 'email inputs do not match';
+            if (password !== confirmPassword) throw 'password inputs do not match';
+        
 
         fetch('https://porchswing-server.herokuapp.com/user/register', {
             method: 'POST',
@@ -68,6 +76,9 @@ export default class Register extends React.Component<PropsType, State> {
             this.props.changeUserName(data.user.firstName);
             //add function from titlebar that stores username in variable
         })
+    } catch (error) {
+        alert(error);
+    }
     };
 
     // toggleModal() {
