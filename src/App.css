@@ -33,7 +33,7 @@ html, body {
     position: fixed;
     left: 0;
     bottom: 0;
-    height: 60px;
+    height: 30px;
     width: 100%;
     background-color: white;
     color: #423838;
@@ -42,7 +42,7 @@ html, body {
 .phantom {
     display: block;
     padding: 20px;
-    height: 60px;
+    height: 30px;
     width: 100%;
 }
 /* responsiveness */
