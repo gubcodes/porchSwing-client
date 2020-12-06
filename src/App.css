@@ -20,13 +20,27 @@ html, body {
 .pointer {
     cursor: pointer;
 }
-.footer {
+/* .footer {
     position: sticky;
     left: 0;
     bottom: 2;
     right: 0;
     height: 20px;
     background-color: transparent;
+} */
+.footer {
+    padding: 20px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+}
+.phantom {
+    display: block;
+    padding: 20px;
+    height: 60px;
+    width: 100%;
 }
 /* responsiveness */
 @media only screen and (max-width: 700px) {
