@@ -13,9 +13,21 @@
 .App {
     background-color: #ffffff;
     min-height: 100vh;
+    padding-bottom: 60px;
+}
+html, body {
+    height: 100%;
 }
 .pointer {
     cursor: pointer;
+}
+.footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 20px;
+    background-color: transparent;
 }
 /* responsiveness */
 @media only screen and (max-width: 700px) {

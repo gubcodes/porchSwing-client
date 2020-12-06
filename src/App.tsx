@@ -34,6 +34,7 @@ const App: React.FunctionComponent = () => {
     <div className="App">
       <Router>
       <TitleBar updateShopOwner={updateShopOwner} updateToken={updateToken} clearToken={clearToken} />
+      <div className='footer centerText'>2020 GUBCo</div>
       </Router>
     </div>
   );
