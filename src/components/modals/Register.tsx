@@ -48,7 +48,7 @@ export default class Register extends React.Component<PropsType, State> {
         //add try + if statements here to validate email + password 
         try {
             if (!email || !password || !firstName) throw 'first name, email, and password required';
-            if (this.state.password.length < 8) throw 'password must more than 8 characters in length';
+            if (this.state.password.length < 8) throw 'password must be more than 8 characters in length';
             if (email !== confirmEmail) throw 'email inputs do not match';
             if (password !== confirmPassword) throw 'password inputs do not match';
         

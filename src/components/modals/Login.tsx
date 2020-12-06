@@ -6,6 +6,7 @@ type PropsType = {
     updateShopOwner: (isShopOwner: string) => void;
     toggle: () => void;
     changeUserName: (userFirstName: string) => void;
+    toggleRegisterModal: () => void;
 };
 
 type State = {
@@ -77,9 +78,11 @@ export default class Login extends React.Component<PropsType, State>{
                                 <Input onChange={(e: any) => this.setState({password: e.target.value})} name='password' type='password' value={this.state.password} />
                             </FormGroup>
                             <FormGroup>
-                                <Button id='buttonHover' type='submit' onClick={this.props.toggle}>login</Button>
+                                <button id='buttonHover' className='button' type='submit' onClick={this.props.toggle}>login</Button>
                             </FormGroup>
                         </Form>
+                        <br/>
+                        <button className='button' onClick={this.props.toggleRegisterModal}>not registered yet?</button>
                     </ModalBody>
                 {/* </Modal> */}
             </div>

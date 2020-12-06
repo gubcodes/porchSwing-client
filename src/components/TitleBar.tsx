@@ -299,7 +299,7 @@ export default class TitleBar extends React.Component<PropsType, State> {
                 </Switch>
                 {/* login + register modals */}
                 <Modal isOpen={!this.state.isOpenLogin} toggle={this.toggleLoginModal}>
-                    <Login updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken} toggle={this.toggleLoginModal} changeUserName={this.changeUserName} />
+                    <Login updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken} toggle={this.toggleLoginModal} changeUserName={this.changeUserName} toggleRegisterModal={this.toggleRegisterModal} />
                 </Modal>
                 <Modal isOpen={!this.state.isOpenRegister} toggle={this.toggleRegisterModal}>
                     <Register updateShopOwner={this.props.updateShopOwner} updateToken={this.props.updateToken} toggle={this.toggleRegisterModal} changeUserName={this.changeUserName} />
