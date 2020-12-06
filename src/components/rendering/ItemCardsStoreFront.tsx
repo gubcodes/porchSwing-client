@@ -19,6 +19,7 @@ type PropsType = {
     shop: number,
     itemData: any,
     getShoppingBag: () => void;
+    toggleLoginModal: () => void;
 }
 
 type State = {
@@ -53,7 +54,7 @@ export default class ItemCardsStoreFront extends Component<PropsType, State>{
                             {/* <a href="#" onClick={this.toggleItemViewSearch} className='stretched-link'></a> */}
                         </CardBody>
                         <Modal isOpen={this.state.isOpenItemViewSearch} toggle={this.toggleItemViewSearch}>
-                            <ItemViewStoreFront itemData={this.props.itemData} shopID={this.props.shop} toggle={this.toggleItemViewSearch} getShoppingBag={this.props.getShoppingBag}/>
+                            <ItemViewStoreFront itemData={this.props.itemData} shopID={this.props.shop} toggle={this.toggleItemViewSearch} getShoppingBag={this.props.getShoppingBag} toggleLoginModal={this.props.toggleLoginModal}/>
                         </Modal>
                     </Card>
                 </CardGroup>

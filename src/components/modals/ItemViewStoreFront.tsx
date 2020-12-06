@@ -7,6 +7,7 @@ type PropsType = {
     shopID: number,
     toggle: () => void;
     getShoppingBag: () => void;
+    toggleLoginModal: () => void;
 }
 
 type State = {
@@ -152,7 +153,14 @@ slides = this.items.map((item) => {
                         </div>
                     <p>{this.props.itemData.itemDescription}</p>
                     <h4>${this.props.itemData.price}</h4>
-                    <button onClick={this.addItemToCart} className='button'>add to bag</button>
+                    {
+                        localStorage.token 
+                        ?
+                        <button onClick={this.addItemToCart} className='button'>add to bag</button>
+                        :
+                        <button onClick={this.props.toggleLoginModal} className='button'>add to bag</button>
+
+                    }
                     {/* <button className='button'><a href={`/storefront/${this.props.shopID}`}>visit shop</a></button> */}
                     </div>
     }

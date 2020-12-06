@@ -131,7 +131,13 @@ class StoreFront extends Component<PropsType, State>{
                                     <Col>
                                     <h1>{this.state.shopName}</h1>
                                     <h4>{this.state.shopDescription}</h4>
-                                    <button className='button' onClick={this.toggleSendMessage}>contact this shop</button>
+                                    {
+                                        localStorage.token 
+                                        ?
+                                        <button className='button' onClick={this.toggleSendMessage}>contact this shop</button>
+                                        :
+                                        <button className='button' onClick={this.props.toggleLoginModal}>contact this shop</button>
+                                    }
                                     </Col>
                                     </Row>
                                     <Modal isOpen={this.state.isOpenSendMessage}>
@@ -149,7 +155,7 @@ class StoreFront extends Component<PropsType, State>{
                                     <Row className="ml-auto mr-auto">
                                     {/* <CardGroup className='card-group m-9 itemCardStyles'> */}
                                         {this.state.itemData.map((potato) =>
-                                            <ItemCardsStoreFront photo={potato.photo1} name={potato.itemName} shop={potato.userID} itemData={potato} getShoppingBag={this.props.getShoppingBag}/>
+                                            <ItemCardsStoreFront photo={potato.photo1} name={potato.itemName} shop={potato.userID} itemData={potato} getShoppingBag={this.props.getShoppingBag} toggleLoginModal={this.props.toggleLoginModal} />
                                         )}
                                     {/* </CardGroup> */}
                                 </Row>
