@@ -8,6 +8,7 @@ type PropsType = {
     title: string,
     senderUserName: string,
     getShoppingBag: () => void;
+    toggleLoginModal: () => void;
 }
 
 type State = {

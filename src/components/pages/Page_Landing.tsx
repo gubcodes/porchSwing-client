@@ -8,6 +8,7 @@ import LineRed from '../../assets/images/lineFillBlack.png';
 type PropsType = {
     title: string,
     getShoppingBag: () => void;
+    toggleLoginModal: () => void;
 }
 
 type State = {
@@ -158,7 +159,7 @@ export default class Landing extends Component<PropsType, State>{
                             <Container className="ml-auto mr-auto">
                                     <Row className="ml-auto mr-auto">
                                 {this.state.itemData.map((potato) =>
-                                    <ItemCardsSearch photo={potato.photo1} name={potato.itemName} shop={potato.userID} itemData={potato} getShoppingBag={this.props.getShoppingBag}/>  
+                                    <ItemCardsSearch photo={potato.photo1} name={potato.itemName} shop={potato.userID} itemData={potato} getShoppingBag={this.props.getShoppingBag} toggleLoginModal={this.props.toggleLoginModal}/>  
                                 )}
                             </Row>
                             </Container>

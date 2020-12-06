@@ -7,6 +7,7 @@ type PropsType = {
     shopID: number,
     toggle: () => void;
     getShoppingBag: () => void;
+    toggleLoginModal: () => void;
 }
 
 type State = {
@@ -153,7 +154,14 @@ slides = this.items.map((item) => {
                     <h4>${this.props.itemData.price}</h4>
                     <Row>
                         <Col className='centerText'>
-                    <button onClick={this.addItemToCart} className='button centerText'>add to bag</button>
+                            {
+                                localStorage.token 
+                                ?
+                                <button onClick={this.addItemToCart} className='button centerText'>add to bag</button>
+                                :
+                                <button onClick={this.props.toggleLoginModal} className='button centerText'>add to bag</button>
+                            }
+                    
                     </Col>
                     <Col className='centerText'>
                     <button className='button centerText'><a href={`/storefront/${this.props.shopID}`}>visit shop</a></button>

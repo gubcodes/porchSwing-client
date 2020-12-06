@@ -292,8 +292,8 @@ export default class TitleBar extends React.Component<PropsType, State> {
                     </Collapse>
                 </Navbar>
                 <Switch>
-                    <Route exact path="/"><Landing title='landing page' getShoppingBag={this.getShoppingBag}/></Route>
-                    <Route path="/storefront/:id"><StoreFront senderUserName={this.state.currentUserFirstName} title='storefront page' getShoppingBag={this.getShoppingBag}/></Route>
+                    <Route exact path="/"><Landing title='landing page' getShoppingBag={this.getShoppingBag} toggleLoginModal={this.toggleLoginModal}/></Route>
+                    <Route path="/storefront/:id"><StoreFront senderUserName={this.state.currentUserFirstName} title='storefront page' getShoppingBag={this.getShoppingBag} toggleLoginModal={this.toggleLoginModal}/></Route>
                     <Route exact path="/profile"><Profile currentUserName={this.state.currentUserFirstName} title='profile page' /></Route>
                     <Route exact path="/backoffice"><BackOffice updateShopOwner={this.props.updateShopOwner} title='backoffice page' /></Route>
                 </Switch>
