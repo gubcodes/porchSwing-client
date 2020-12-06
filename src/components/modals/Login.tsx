@@ -78,7 +78,7 @@ export default class Login extends React.Component<PropsType, State>{
                                 <Input onChange={(e: any) => this.setState({password: e.target.value})} name='password' type='password' value={this.state.password} />
                             </FormGroup>
                             <FormGroup>
-                                <button id='buttonHover' className='button' type='submit' onClick={this.props.toggle}>login</Button>
+                                <button id='buttonHover' className='button' type='submit' onClick={this.props.toggle}>login</button>
                             </FormGroup>
                         </Form>
                         <br/>
