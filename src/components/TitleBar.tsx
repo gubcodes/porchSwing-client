@@ -105,7 +105,7 @@ export default class TitleBar extends React.Component<PropsType, State> {
                     this.setState({
                         bagItemCount: data.length,
                         bagData: data
-                    }) 
+                    })
                     : console.log('no data returned getShoppingBag');
             })
     };
@@ -143,19 +143,12 @@ export default class TitleBar extends React.Component<PropsType, State> {
             .then((data) => {
                 console.log(data.price)
                 this.state.itemPriceData.unshift(parseInt(data.price))
+            }).then(() => {
+                this.getSum(); //i added this whole .then promise 4:32pm
             })
             )}
-            // console.log(priceArray);
-            // let test = [20.00, 5.00];
-            // let sumTest = test.reduce(function(a,b){
-            //     return a + b;
-            // }, 0);
-            // console.log(sumTest);
             console.log(this.state.itemPriceData);
-            //     let sum = this.state.itemPriceData.reduce(function(a,b){
-            //         return a + b;
-            //     }, 0);
-            // console.log('sum: ', sum);
+
     };
 
     getSum = () => {
