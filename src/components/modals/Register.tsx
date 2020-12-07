@@ -88,7 +88,7 @@ export default class Register extends React.Component<PropsType, State> {
     // send welcome message:
     welcomeMessage = () => {
         let subjectData = 'welcome!';
-        let body = 'welcome to porchSwing! you are now supporting local with contactless delivery directly from the makers themselves. are you a maker yourself? check out the back office and debut your storefront today!';
+        let body = `welcome to porchSwing! you are now supporting local with contactless delivery directly from the makers themselves. are you a maker yourself? check out the back office and debut your storefront today!\n----------`;
         let senderUserName = 'porchSwing'; //from user name
         let receiverUserName = this.state.firstName; //to user name (or shop name)
 
