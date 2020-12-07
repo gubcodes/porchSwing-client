@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, FormGroup, Modal, ModalBody, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Modal, ModalBody, Label, Input, Button, ModalHeader } from 'reactstrap';
 import { SliderPicker } from 'react-color';
 
 type PropsType = {
