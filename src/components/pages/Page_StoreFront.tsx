@@ -148,7 +148,8 @@ class StoreFront extends Component<PropsType, State>{
                                     <Row>
                                         <Col>
                                         <br />
-                                        <img className='lines alignLeft' src={LineRed} />
+                                        <img className='lines centerText' src={LineRed} />
+                                        <br/>
                                         <br/>
                                     <h2 className='centerText'>pieces currently available from {this.state.shopName}</h2>
                                     </Col>
