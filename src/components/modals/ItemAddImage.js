@@ -205,9 +205,12 @@ const ItemAddImage = (props) => {
             {/* <Modal isOpen={props.isOpenItemAdd}> */}
             {/* <Modal toggle={props.toggle}> */}
             {/* <ModalHeader {props.toggle}/> */}
-            <div className='modalBar'>
+            {/* <div className='modalBar'>
                 <img src={cancel} id='buttonHover' className='x-button' onClick={props.toggle}></img>
-            </div>
+            </div> */}
+            <ModalHeader className='modalHeader' toggle={props.toggle}>
+                    <h4 className='modalHeaderText'>new item</h4>
+                </ModalHeader>
             <ModalBody>
                 <Form onSubmit={handleSubmit}>
                     {/* piece name */}

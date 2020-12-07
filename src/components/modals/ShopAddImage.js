@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, FormGroup, Modal, ModalBody, Label, Input, Button } from 'reactstrap';
+import { Form, FormGroup, Modal, ModalBody, ModalHeader, Label, Input, Button } from 'reactstrap';
 import { storage } from '../../assets/firebase';
 import filler_logo from '../../assets/images/filler_logo.png';
 
@@ -72,9 +72,9 @@ const ShopAddImage = (props) => {
 
     return (
         <div>
-            <FormGroup>
-                <Button id='buttonHover' type='button' onClick={props.toggle}>X</Button>
-            </FormGroup>
+            <ModalHeader className='modalHeader' toggle={props.toggle}>
+                    <h4 className='modalHeaderText'>new shop logo</h4>
+                </ModalHeader>
             <ModalBody>
                 <Form onSubmit={handleSubmit}>
                     <div>

@@ -335,7 +335,7 @@ export default class TitleBar extends React.Component<PropsType, State> {
                             <Button onClick={this.getTotal}>getTotal</Button>
                             <Button onClick={this.getSum}>getSum</Button>
                             </div>
-                            <div>
+                            <div className='centerText'>
                             <button className='button' onClick={this.toggleCheckout}>checkout</button>
                             </div>
                             </div>
@@ -347,7 +347,7 @@ export default class TitleBar extends React.Component<PropsType, State> {
                             </Elements>
                             </div>
                             <br/>
-                            <div>
+                            <div className='centerText'>
                             <Button className='button' onClick={this.toggleCheckout}>return to bag</Button>
                             </div>
                             </div>

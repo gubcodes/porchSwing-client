@@ -132,9 +132,6 @@ export default class ShopEdit extends Component<PropsType, State>{
     render() {
         return (
             <div>
-                {/* <FormGroup>
-                        <Button id='buttonHover' type='submit' onClick={this.props.toggle}>X</Button>
-                    </FormGroup> */}
                     <ModalHeader className='modalHeader' toggle={this.props.toggle}>
                     <h4 className='modalHeaderText'>setting up shop</h4>
                 </ModalHeader>
@@ -149,7 +146,7 @@ export default class ShopEdit extends Component<PropsType, State>{
                         <FormGroup>
                         <Label htmlFor='shop description'>shop description</Label>
                             <Input onChange={(e: any) => this.setState({shopDescription: e.target.value})} name='shop description' type='textarea' value={this.state.shopDescription} />
-                            <p>*your description is also searchable, consider adding descriptive words that describe the style of your pieces as well as your local porch drop delivery area - city name or zip codes work well!</p>
+                            <p>*your description is also searchable, consider adding key words that fit the style of your pieces as well as your local porch drop delivery area - city name or zip codes work well!</p>
                         </FormGroup>
                         <FormGroup>
                             <div className='centerText'>
@@ -157,7 +154,6 @@ export default class ShopEdit extends Component<PropsType, State>{
                             </div>
                         </FormGroup>
                     </Form>
-                    {/* <SliderPicker /> */}
                 </ModalBody>
             </div>
         )
