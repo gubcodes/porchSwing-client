@@ -138,7 +138,7 @@ slides = this.items.map((item) => {
         return (
             <div>
                 <ModalHeader className='modalHeader' toggle={this.props.toggle}>
-                    {this.props.itemData.itemName}
+                    <h4 className='modalHeaderText'>{this.props.itemData.itemName}</h4>
                 </ModalHeader>
                 <ModalBody>
                 <div>
@@ -172,18 +172,20 @@ slides = this.items.map((item) => {
                     {
                         this.state.availableUpdate 
                         ?
-                        <div>
+                        <div className='centerText'>
                         <p>this piece is available now.</p>
                         <button onClick={this.toggleAvailable} className='button'>take it off the shelf?</button>
                         </div>
                         :
-                        <div>
+                        <div className='centerText'>
                         <p>this piece is not currently available.</p>
                         <button onClick={this.toggleAvailable}className='button'>display it?</button>
                         </div>
                     }
                         <br/>
+                        <div className='centerText'>
                         <button onClick={this.props.toggleAndGetItems} type='submit' className='button'>save changes</button>
+                        </div>
                     </Form>
                     </div>
                 </ModalBody>

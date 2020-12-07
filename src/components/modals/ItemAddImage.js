@@ -246,18 +246,18 @@ const ItemAddImage = (props) => {
                         <br />
                         <h5>upload up to 3 images</h5>
                         <input className='uploadFileButton' type='file' onChange={handleChange} />
-                        <br />
-                        <button className='button' type='button' onClick={handleUpload}>upload</button>
+                        {/* <br /> */}
+                        <button type='button' onClick={handleUpload}>upload</button>
                         <br />
                         <br />
                         <input className='uploadFileButton' type='file' onChange={handleChange2} />
-                        <br />
-                        <button className='button' type='button' onClick={handleUpload2}>upload</button>
+                        {/* <br /> */}
+                        <button type='button' onClick={handleUpload2}>upload</button>
                         <br />
                         <br />
                         <input className='uploadFileButton' type='file' onChange={handleChange3} />
-                        <br />
-                        <button className='button' type='button' onClick={handleUpload3}>upload</button>
+                        {/* <br /> */}
+                        <button type='button' onClick={handleUpload3}>upload</button>
                         <br />
                         {/* <Row>
                             <Col>
