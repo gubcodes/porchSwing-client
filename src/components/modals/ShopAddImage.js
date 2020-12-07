@@ -87,7 +87,10 @@ const ShopAddImage = (props) => {
                     </div>
                     {/* button sends fetch and closes modal */}
                     <FormGroup>
-                        <Button id='buttonHover' type='submit' onClick={props.toggle}>add logo</Button>
+                        {/* <Button id='buttonHover' type='submit' onClick={props.toggle}>add logo</Button> */}
+                        <div className='centerText'>
+                            <button id='buttonHover' className='button centerText' type='submit' onClick={props.toggle}>add logo</button>
+                        </div>
                     </FormGroup>
                 </Form>
             </ModalBody >
