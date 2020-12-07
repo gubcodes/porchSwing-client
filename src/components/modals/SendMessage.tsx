@@ -59,10 +59,8 @@ export default class SendMessage extends Component<PropsType, State>{
     render() {
         return (
             <div>
-                <ModalHeader toggle={this.props.toggle}>
-                <FormGroup>
-                    <Button id='buttonHover' type='submit' onClick={this.props.toggle}>X</Button>
-                </FormGroup>
+                <ModalHeader className='modalHeader' toggle={this.props.toggle}>
+                <h4 className='modalHeaderText'>to: {this.props.shopName}</h4>
                 </ModalHeader>
                 <ModalBody>
                     <Form onSubmit={this.handleSubmit}>

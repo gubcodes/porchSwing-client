@@ -132,9 +132,12 @@ export default class ShopEdit extends Component<PropsType, State>{
     render() {
         return (
             <div>
-                <FormGroup>
+                {/* <FormGroup>
                         <Button id='buttonHover' type='submit' onClick={this.props.toggle}>X</Button>
-                    </FormGroup>
+                    </FormGroup> */}
+                    <ModalHeader className='modalHeader' toggle={this.props.toggle}>
+                    <h4 className='modalHeaderText'>setting up shop</h4>
+                </ModalHeader>
                 <ModalBody>
                     <Form onSubmit={this.handleSubmit}>
                         {/* shop name */}
@@ -148,7 +151,9 @@ export default class ShopEdit extends Component<PropsType, State>{
                             <Input onChange={(e: any) => this.setState({shopDescription: e.target.value})} name='shop description' type='textarea' value={this.state.shopDescription} />
                         </FormGroup>
                         <FormGroup>
-                            <Button id='buttonhover' type='submit' onClick={this.props.toggle}>update storefront</Button>
+                            <div className='centerText'>
+                            <button id='buttonhover' className='button centerText' type='submit' onClick={this.props.toggle}>update storefront</button>
+                            </div>
                         </FormGroup>
                     </Form>
                     {/* <SliderPicker /> */}

@@ -154,8 +154,9 @@ export default class Register extends React.Component<PropsType, State> {
                                 <Input onChange={(e: any) => this.setState({confirmPassword: e.target.value})} name='confirm password' type='password' value={this.state.confirmPassword} />
                             </FormGroup>
                             <FormGroup>
-                                {/* <Button id='buttonHover' type='submit'  onClick={this.props.toggle}>sign up</Button> */}
+                            <div className='centerText'>
                                 <button id='buttonHover' className='button centerText' type='submit'>sign up</button>
+                                </div>
                             </FormGroup>
                         </Form>
                     </ModalBody>

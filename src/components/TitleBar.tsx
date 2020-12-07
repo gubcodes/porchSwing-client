@@ -306,7 +306,9 @@ export default class TitleBar extends React.Component<PropsType, State> {
                 </Modal>
                 {/* shopping bag modal */}
                 <Modal isOpen={!this.state.isOpenShoppingBag} toggle={this.toggleShoppingBagModal}>
-                    <ModalHeader toggle={this.toggleShoppingBagModal}>shopping cart</ModalHeader>
+                    <ModalHeader className='modalHeader' toggle={this.toggleShoppingBagModal}>
+                        <h4 className='modalHeaderText'>shopping bag</h4>
+                    </ModalHeader>
                     <ModalBody>
                     <div>
                         {

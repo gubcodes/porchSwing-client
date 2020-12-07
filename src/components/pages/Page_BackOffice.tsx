@@ -146,6 +146,7 @@ class BackOffice extends Component<PropsType, State>{
                         ?
                         //if they don't own a shop:
                         <div className='centerText'>
+                            <br/>
                             <h2>you haven't set up shop yet!</h2>
                             <img className='boxWidth' src={box}/>
                             <h4>let's get working on your very own storefront.</h4>

@@ -91,21 +91,17 @@ export default class SendMessageFromInbox extends Component<PropsType, State>{
     render() {
         return (
             <div>
-                <ModalHeader toggle={this.props.toggle}>
-                    {/* add toggle button and ternary to show the message THEN show the response form */}
-                    <h4>from: {this.props.receiverFirstName}</h4>
-                {/* <FormGroup>
-                    <Button id='buttonHover' type='submit' onClick={this.props.toggle}>X</Button>
-                </FormGroup> */}
+                <ModalHeader className='modalHeader' toggle={this.props.toggle}>
+                    <h4 className='modalHeaderText'>from: {this.props.receiverFirstName}</h4>
                 </ModalHeader>
                 <ModalBody>
-                {/* <h4>from: {this.props.receiverFirstName}</h4> */}
                     <h5>subject: {this.props.subject}</h5>
                     <p>{this.props.message.substring(0, this.props.message.indexOf(`----------`))}</p>
-            <span>sent: {new Date(Date.parse(this.props.sentTime)).toDateString()}</span>
+                    <span>sent: {new Date(Date.parse(this.props.sentTime)).toDateString()}</span>
                     <hr/>
                     <Form onSubmit={this.handleSubmit}>
-                        <h5>responding to: {this.props.receiverFirstName}</h5>
+                        {/* <h5>responding to: {this.props.receiverFirstName}</h5> */}
+                        <h5>your response:</h5>
                         <FormGroup>
                         <Label htmlFor='message subject'>subject</Label>
                         <Input onChange={(e: any) => this.setState({subjectData: e.target.value})} name='message subject' value={this.state.subjectData} />
