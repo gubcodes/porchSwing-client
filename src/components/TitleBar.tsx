@@ -107,6 +107,8 @@ export default class TitleBar extends React.Component<PropsType, State> {
                         bagData: data
                     })
                     : console.log('no data returned getShoppingBag');
+            }).then(() => {
+                this.getTotal(); //i added this entire .then promise 4:44pm
             })
     };
 
