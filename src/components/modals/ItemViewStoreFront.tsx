@@ -129,7 +129,7 @@ slides = this.items.map((item) => {
         return (
             <div>
                 <ModalHeader className='modalHeader' toggle={this.props.toggle}>
-                    {this.props.itemData.itemName}
+                    <h4 className='modalHeaderText'>{this.props.itemData.itemName}</h4>
                 </ModalHeader>
                 <ModalBody>
                     {
@@ -153,6 +153,7 @@ slides = this.items.map((item) => {
                         </div>
                     <p>{this.props.itemData.itemDescription}</p>
                     <h4>${this.props.itemData.price}</h4>
+                    <div className='centerText'>
                     {
                         localStorage.token 
                         ?
@@ -161,7 +162,7 @@ slides = this.items.map((item) => {
                         <button onClick={this.props.toggleLoginModal} className='button'>add to bag</button>
 
                     }
-                    {/* <button className='button'><a href={`/storefront/${this.props.shopID}`}>visit shop</a></button> */}
+                    </div>
                     </div>
     }
                 </ModalBody>
