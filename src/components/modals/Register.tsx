@@ -23,6 +23,7 @@ export default class Register extends React.Component<PropsType, State> {
     constructor(props: PropsType) {
         super(props);
         this.handleSubmit = this.handleSubmit.bind(this);
+        // this.welcomeMessage = this.handleSubmit.bind(this);
         this.state = {
             firstName: '',
             lastName: '',
@@ -75,6 +76,7 @@ export default class Register extends React.Component<PropsType, State> {
             this.props.updateShopOwner(data.user.shopOwner);
             this.props.changeUserName(data.user.firstName);
             this.props.toggle();
+            this.welcomeMessage();
             //add function from titlebar that stores username in variable
         })
     } catch (error) {
@@ -83,11 +85,36 @@ export default class Register extends React.Component<PropsType, State> {
     }
     };
 
-    // toggleModal() {
-    //     this.setState({
-    //         isOpen: (!this.state.isOpen)
-    //     })
-    // };
+    // send welcome message:
+    welcomeMessage = () => {
+        let subjectData = 'welcome!';
+        let body = 'welcome to porchSwing! you are now supporting local with contactless delivery directly from the makers themselves. are you a maker yourself? check out the back office and debut your storefront today!';
+        let senderUserName = 'porchSwing'; //from user name
+        let receiverUserName = this.state.firstName; //to user name (or shop name)
+
+        fetch('https://porchswing-server.herokuapp.com/chatauth/admin', {
+            method: 'POST',
+            body: JSON.stringify({
+                chatdata: {
+                    subject: subjectData,
+                    message: body,
+                    // receiverUserID: receiverUserID, //taken from req
+                    read: false,
+                    senderUserName: senderUserName,
+                    receiverUserName: receiverUserName
+                }
+            }),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.token
+            })
+        }).then(
+            (response) => response.json()
+        ).then((data) => {
+            console.log(data);
+            //TODO: add outbox rerender here
+        })
+    };
 
     render() {
         return (

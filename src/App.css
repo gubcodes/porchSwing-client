@@ -20,19 +20,12 @@ html, body {
 .pointer {
     cursor: pointer;
 }
-/* .footer {
-    position: sticky;
-    left: 0;
-    bottom: 2;
-    right: 0;
-    height: 20px;
-    background-color: transparent;
-} */
+/* footer */
 .footer {
     padding: 10px;
     position: fixed;
     left: 0;
-    bottom: 0;
+    bottom: 4; /*was 0*/
     height: 30px;
     width: 100%;
     background-color: white;
