@@ -63,11 +63,13 @@ export default class Login extends React.Component<PropsType, State>{
         return (
             <div>
                 {/* <Modal isOpen={!this.state.isOpen} toggle={this.toggle}> */}
-                    <ModalHeader toggle={this.props.toggle}>login</ModalHeader>
+                    <ModalHeader className='modalHeader' toggle={this.props.toggle}>
+                        <h4 className='modalHeaderText'>login</h4>
+                    </ModalHeader>
                     <ModalBody>
-                    <FormGroup>
+                    {/* <FormGroup>
                         <Button id='buttonHover' type='submit' onClick={this.props.toggle}>X</Button>
-                    </FormGroup>
+                    </FormGroup> */}
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
                                 <Label htmlFor='email'>email</Label>
