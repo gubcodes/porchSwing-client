@@ -120,10 +120,13 @@ export default class Register extends React.Component<PropsType, State> {
         return (
             <div>
                 {/* <Modal isOpen={!this.state.isOpen}> */}
-                    <FormGroup>
+                    {/* <FormGroup>
                         <Button id='buttonHover' type='submit' onClick={this.props.toggle}>X</Button>
-                    </FormGroup>
+                    </FormGroup> */}
                     {/* <ModalHeader /> */}
+                    <ModalHeader className='modalHeader' toggle={this.props.toggle}>
+                        <h4 className='modalHeaderText'>sign up</h4>
+                    </ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.handleSubmit}>
                             <FormGroup>
@@ -152,7 +155,7 @@ export default class Register extends React.Component<PropsType, State> {
                             </FormGroup>
                             <FormGroup>
                                 {/* <Button id='buttonHover' type='submit'  onClick={this.props.toggle}>sign up</Button> */}
-                                <Button id='buttonHover' type='submit'>sign up</Button>
+                                <button id='buttonHover' className='button centerText' type='submit'>sign up</button>
                             </FormGroup>
                         </Form>
                     </ModalBody>

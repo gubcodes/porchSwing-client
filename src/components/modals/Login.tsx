@@ -80,11 +80,11 @@ export default class Login extends React.Component<PropsType, State>{
                                 <Input onChange={(e: any) => this.setState({password: e.target.value})} name='password' type='password' value={this.state.password} />
                             </FormGroup>
                             <FormGroup>
-                                <button id='buttonHover' className='button' type='submit' onClick={this.props.toggle}>login</button>
+                                <button id='buttonHover' className='button centerText' type='submit' onClick={this.props.toggle}>login</button>
                             </FormGroup>
                         </Form>
                         <br/>
-                        <button className='button' onClick={this.props.toggleRegisterModal}>not registered yet?</button>
+                        <button className='button centerText' onClick={this.props.toggleRegisterModal}>not registered yet?</button>
                     </ModalBody>
                 {/* </Modal> */}
             </div>
