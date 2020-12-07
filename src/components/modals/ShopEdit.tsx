@@ -70,6 +70,7 @@ export default class ShopEdit extends Component<PropsType, State>{
         ).then((data) => {
             console.log(data);
             this.handleSubmitUpdate();
+            this.newShopMessage();
         })
     };
 
@@ -97,11 +98,36 @@ export default class ShopEdit extends Component<PropsType, State>{
         });
     };
     // //wrapping both fetches together for onSubmit:
-    // handleBoth(e:any) {
-    //     e.preventdefault();
-    //     handleSubmit();
-    //     handleSubmitUpdate();
-    // }
+    // send shopowner message:
+    newShopMessage = () => {
+        let subjectData = `you're a shop owner!`;
+        let body = `congrats! you're well on your way to start selling your pieces. if you have any questions or comments, just respond and let us know we can help. get selling!\n----------`;
+        let senderUserName = 'porchSwing'; //from user name
+        let receiverUserName = this.state.shopName; //to user name (or shop name)
+
+        fetch('https://porchswing-server.herokuapp.com/chatauth/admin', {
+            method: 'POST',
+            body: JSON.stringify({
+                chatdata: {
+                    subject: subjectData,
+                    message: body,
+                    // receiverUserID: receiverUserID, //taken from req
+                    read: false,
+                    senderUserName: senderUserName,
+                    receiverUserName: receiverUserName
+                }
+            }),
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.token
+            })
+        }).then(
+            (response) => response.json()
+        ).then((data) => {
+            console.log(data);
+            //TODO: add outbox rerender here
+        })
+    };
 
     render() {
         return (
