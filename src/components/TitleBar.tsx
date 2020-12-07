@@ -144,6 +144,9 @@ export default class TitleBar extends React.Component<PropsType, State> {
         }).then((res) => res.json())
             .then((data) => {
                 console.log(data.price)
+                this.setState({
+                    itemPriceData: ([0]) //added this setstate at 4:56pm
+                });
                 this.state.itemPriceData.unshift(parseInt(data.price))
             }).then(() => {
                 this.getSum(); //i added this whole .then promise 4:32pm
