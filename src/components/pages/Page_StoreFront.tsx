@@ -3,6 +3,7 @@ import { Modal, CardGroup, Container, Row, Col,  } from 'reactstrap';
 import ItemCardsStoreFront from '../rendering/ItemCardsStoreFront';
 import SendMessage from '../modals/SendMessage';
 import transparent_logo from '../../assets/images/transparent_logo.png';
+import LineRed from '../../assets/images/lineFillBlack.png';
 
 type PropsType = {
     title: string,
@@ -146,6 +147,8 @@ class StoreFront extends Component<PropsType, State>{
                                     
                                     <Row>
                                         <Col>
+                                        <br />
+                                        <img className='lines alignLeft' src={LineRed} />
                                         <br/>
                                     <h2 className='centerText'>pieces currently available from {this.state.shopName}</h2>
                                     </Col>
