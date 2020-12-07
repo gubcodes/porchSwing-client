@@ -147,7 +147,7 @@ class BackOffice extends Component<PropsType, State>{
                         //if they don't own a shop:
                         <div className='centerText'>
                             <h2>you haven't set up shop yet!</h2>
-                            <img src={box}/>
+                            <img className='boxWidth' src={box}/>
                             <h4>let's get working on your very own storefront.</h4>
                             <button className='button' onClick={this.toggleShopEdit}>start here</button>
                             <Modal isOpen={this.state.isOpenShopEdit}>
