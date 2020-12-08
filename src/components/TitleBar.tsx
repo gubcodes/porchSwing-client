@@ -322,7 +322,7 @@ export default class TitleBar extends React.Component<PropsType, State> {
                                         <th></th>
                                         <th></th>
                                         <th></th>
-                                        <th></th>
+                                        {/* <th></th> */}
                                     </tr>
                                 </thead>
                                 <tbody>

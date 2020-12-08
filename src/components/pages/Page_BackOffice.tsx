@@ -152,7 +152,7 @@ class BackOffice extends Component<PropsType, State>{
                             <h4>let's get working on your very own storefront.</h4>
                             <button className='button' onClick={this.toggleShopEdit}>start here</button>
                             <Modal isOpen={this.state.isOpenShopEdit}>
-                                <ShopEdit toggle={this.toggleShopEdit} updateShopOwner={this.props.updateShopOwner} />
+                                <ShopEdit toggle={this.toggleShopEdit} updateShopOwner={this.props.updateShopOwner} getShopInfo={this.getShopInfo} />
                             </Modal>
                         </div>
                         :
@@ -179,7 +179,7 @@ class BackOffice extends Component<PropsType, State>{
                             </Col>
                             </Row>
                             <Modal isOpen={this.state.isOpenShopAddImage} toggle={this.toggleShopAddImage}>
-                                <ShopAddImage toggle={this.toggleShopAddImage} />
+                                <ShopAddImage toggle={this.toggleShopAddImage} getShopInfo={this.getShopInfo} />
                             </Modal>
                             <br />
                             {/* <img src={url || 'http://via.placeholder.com/100x100'} alt='item-image' /> */}

@@ -27,6 +27,7 @@ const ShopAddImage = (props) => {
         ).then((data) => {
             console.log(data)
             console.log('logo uploaded')
+            props.getShopInfo();
         })
     };
 

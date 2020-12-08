@@ -141,7 +141,7 @@ class StoreFront extends Component<PropsType, State>{
                                     }
                                     </Col>
                                     </Row>
-                                    <Modal isOpen={this.state.isOpenSendMessage}>
+                                    <Modal isOpen={this.state.isOpenSendMessage} toggle={this.toggleSendMessage} >
                                         <SendMessage shopName={this.state.shopName} shop={this.state.shop} toggle={this.toggleSendMessage} senderUserName={this.state.userName} />
                                     </Modal>
                                     

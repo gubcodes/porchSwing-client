@@ -5,6 +5,7 @@ import { SliderPicker } from 'react-color';
 type PropsType = {
     toggle: () => void;
     updateShopOwner: (isShopOwner: string) => void;
+    getShopInfo: () => void;
 }
 
 type State = {
@@ -71,6 +72,7 @@ export default class ShopEdit extends Component<PropsType, State>{
             console.log(data);
             this.handleSubmitUpdate();
             this.newShopMessage();
+            this.props.getShopInfo();
         })
     };
 

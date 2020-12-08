@@ -84,13 +84,13 @@ export default class Cart extends Component<PropsType, State>{
                     :
                     <td>{this.state.itemData.itemName}</td>
                 }
-                {
+                {/* {
                     this.state.itemData.length === 0
                     ?
                     <td> </td>
                     :
                     <td>{this.state.itemData.quantity}</td>
-                }
+                } */}
                 {
                     this.state.itemData.length === 0
                     ?
