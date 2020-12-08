@@ -67,7 +67,7 @@ export default class Cart extends Component<PropsType, State>{
         return (
             <tr>
                 {
-                    this.state.itemData.length === 0
+                    this.state.itemData === {}
                     ?
                     <td>you don't have any pieces in your bag</td>
                     :

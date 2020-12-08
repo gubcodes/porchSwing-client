@@ -348,7 +348,7 @@ export default class TitleBar extends React.Component<PropsType, State> {
                             </div>
                             <br/>
                             <div className='centerText'>
-                            <Button className='button' onClick={this.toggleCheckout}>return to bag</Button>
+                            <button className='button' onClick={this.toggleCheckout}>return to bag</button>
                             </div>
                             </div>
                         }
