@@ -18,3 +18,36 @@
      I8                                                                                                        I8   8I 
      I8                                                                                                        `8, ,8I 
      I8                                                                                                         `Y8P"  
+
+this is the client app for porchSwing - created in node.js using react + typescript
+
+---------------------------------------------------
+
+after cloning: 
+$npm install
+
+---------------------------------------------------
+
+dependent upon:
+bootstrap
+firebase
+react
+react-router-dom
+reactstrap
+sass
+webpack
+firebase
+
+development:
+babel-loader
+file-loader
+typescript
+webpack-cli
+
+---------------------------------------------------
+
+current version:
+1.0.0
+
+released:
+12-7-2020
