@@ -144,9 +144,9 @@ export default class TitleBar extends React.Component<PropsType, State> {
         }).then((res) => res.json())
             .then((data) => {
                 console.log(data.price)
-                this.setState({
-                    itemPriceData: ([0]) //added this setstate at 4:56pm
-                });
+                // this.setState({
+                //     itemPriceData: ([0]) //added this setstate at 4:56pm
+                // });
                 this.state.itemPriceData.unshift(parseInt(data.price))
             }).then(() => {
                 this.getSum(); //i added this whole .then promise 4:32pm
@@ -320,7 +320,7 @@ export default class TitleBar extends React.Component<PropsType, State> {
                                         <th></th>
                                         <th></th>
                                         <th></th>
-                                        <th>${this.state.sum}.00</th>
+                                        <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -330,10 +330,11 @@ export default class TitleBar extends React.Component<PropsType, State> {
                                     )}
                                 </tbody>
                             </Table>
-                            <Button onClick={this.getTotal}>getTotal</Button>
-                            <Button onClick={this.getSum}>getSum</Button>
+                            {/* <Button onClick={this.getTotal}>getTotal</Button>
+                            <Button onClick={this.getSum}>getSum</Button> */}
                             </div>
                             <div className='centerText'>
+                                <h4>total: ${this.state.sum}.00</h4>
                             <button className='button' onClick={this.toggleCheckout}>checkout</button>
                             </div>
                             </div>
