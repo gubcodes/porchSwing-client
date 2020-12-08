@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements, CardElement } from "@stripe/react-stripe-js";
+import { timeStamp } from 'console';
 // import { Button } from 'reactstrap';
 // import { timeStamp } from 'console';
 
@@ -67,7 +68,7 @@ export default class Cart extends Component<PropsType, State>{
         return (
             <tr>
                 {
-                    this.state.itemData === {}
+                    this.state.itemData == {}
                     ?
                     <td>you don't have any pieces in your bag</td>
                     :
