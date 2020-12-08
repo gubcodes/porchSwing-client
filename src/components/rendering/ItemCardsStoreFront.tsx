@@ -50,7 +50,9 @@ export default class ItemCardsStoreFront extends Component<PropsType, State>{
                     <Card onClick={this.toggleItemViewSearch} className='card overflow-auto pointer'>
                         <CardBody>
                         <CardImg src={this.props.photo} alt='item-img' />
+                        <div className='centerText'>
                         <p>{this.props.name}</p>
+                        </div>
                             {/* <a href="#" onClick={this.toggleItemViewSearch} className='stretched-link'></a> */}
                         </CardBody>
                         <Modal isOpen={this.state.isOpenItemViewSearch} toggle={this.toggleItemViewSearch}>

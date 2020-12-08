@@ -50,7 +50,9 @@ export default class ItemCardsSearch extends Component<PropsType, State>{
                     <Card onClick={this.toggleItemViewSearch} className='card overflow-auto pointer'>
                         <CardBody>
                         <CardImg src={this.props.photo} alt='item-img' />
+                        <div className='centerText'>
                         <p>{this.props.name}</p>
+                        </div>
                         </CardBody>
                         <Modal isOpen={this.state.isOpenItemViewSearch} toggle={this.toggleItemViewSearch}>
                             <ItemViewSearch itemData={this.props.itemData} shopID={this.props.shop} toggle={this.toggleItemViewSearch} getShoppingBag={this.props.getShoppingBag} toggleLoginModal={this.props.toggleLoginModal}/>

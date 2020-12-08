@@ -46,7 +46,7 @@ export default class Landing extends Component<PropsType, State>{
     }
 
     randomSearch = () => {
-        let array = ['stickers', 'necklace', 'pins', 'embroidery'];
+        let array = ['sticker', 'shirt', 'embroidery'];
         let randomItem = array[Math.floor(Math.random() * array.length)];
         this.setState({
             searchValue: randomItem
