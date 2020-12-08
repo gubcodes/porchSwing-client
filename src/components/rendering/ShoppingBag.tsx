@@ -94,7 +94,7 @@ export default class Cart extends Component<PropsType, State>{
                     :
                     <td>{this.state.itemData.price}</td>
                 }
-                <td><button className='button' onClick={this.removeItem}>remove</button></td>
+                <td><button className='button' onClick={this.removeItem}>x</button></td>
             </tr>
         )
     }

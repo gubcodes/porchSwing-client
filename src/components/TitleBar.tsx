@@ -104,7 +104,8 @@ export default class TitleBar extends React.Component<PropsType, State> {
                     ?
                     this.setState({
                         bagItemCount: data.length,
-                        bagData: data
+                        bagData: data,
+                        itemPriceData: [0] //added 7:55pm
                     })
                     : console.log('no data returned getShoppingBag');
             }).then(() => {
