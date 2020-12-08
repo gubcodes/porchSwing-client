@@ -15,7 +15,8 @@ type PropsType = {
 }
 
 type State = {
-    itemData: any
+    itemData: any,
+    emptyBag: boolean
 }
 
 export default class Cart extends Component<PropsType, State>{
@@ -24,7 +25,8 @@ export default class Cart extends Component<PropsType, State>{
         this.getItem = this.getItem.bind(this);
         this.removeItem = this.removeItem.bind(this);
         this.state = {
-            itemData: {}
+            itemData: {},
+            emptyBag: true
         }
     }
 
@@ -39,7 +41,8 @@ export default class Cart extends Component<PropsType, State>{
             .then((data) => {
                 console.log(data)
                 this.setState({
-                    itemData: data
+                    itemData: data,
+                    emptyBag: false
                 });
                 console.log(this.state.itemData);
             })
@@ -68,7 +71,7 @@ export default class Cart extends Component<PropsType, State>{
         return (
             <tr>
                 {
-                    this.props.bagItemData == {}
+                    this.state.emptyBag === true
                     ?
                     <td>you don't have any pieces in your bag</td>
                     :
@@ -95,7 +98,13 @@ export default class Cart extends Component<PropsType, State>{
                     :
                     <td>{this.state.itemData.price}</td>
                 }
-                <td><button className='button' onClick={this.removeItem}>x</button></td>
+                {
+                    this.state.emptyBag === true
+                    ?
+                    <td> </td>
+                    :
+                    <td><button className='button' onClick={this.removeItem}>X</button></td>
+                }
             </tr>
         )
     }
