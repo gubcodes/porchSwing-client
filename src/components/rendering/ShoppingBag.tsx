@@ -68,7 +68,7 @@ export default class Cart extends Component<PropsType, State>{
         return (
             <tr>
                 {
-                    this.state.itemData == {}
+                    this.props.bagItemData == {}
                     ?
                     <td>you don't have any pieces in your bag</td>
                     :
